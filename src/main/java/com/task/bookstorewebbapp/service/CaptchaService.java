@@ -3,7 +3,6 @@ package com.task.bookstorewebbapp.service;
 import com.task.bookstorewebbapp.Constants;
 import com.task.bookstorewebbapp.repository.captcha.CaptchaRepository;
 import com.task.bookstorewebbapp.repository.captcha.CaptchaRepositoryCookieImpl;
-import com.task.bookstorewebbapp.utils.CaptchaUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.awt.Color;
