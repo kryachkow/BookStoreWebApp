@@ -9,51 +9,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Paths.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/entity/UserEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/RegistrationForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/user/UserRepoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/user/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/CaptchaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/tag/CaptchaTag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/CaptchaUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/captchaTag.tld" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/head.jspf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/header.jspf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signUp.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/error404.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/signUpValidation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/template/carta/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/template/carta/dist/css/production.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/utils/ValidationUtilsTest.java" afterDir="false" />
+    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="Redurant class removed, minor style fixes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/CaptchaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/CaptchaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/CaptchaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/utils/ValidationUtilsTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,23 +62,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_opened_file_path": "C:/Users/Admin/Desktop/Колесников Примеры/Online-Store-master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Колесников Примеры/Online-Store-master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF" />
@@ -120,11 +93,12 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.task.bookstorewebbapp.service.validation" />
       <recent name="com.task.bookstorewebbapp.utils" />
       <recent name="com.task.bookstorewebbapp.servlet" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ValidationUtilsTest">
+  <component name="RunManager" selected="JUnit.ValidationServiceImplTest">
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.utils.main" />
       <module name="BookStoreWebbApp" />
@@ -138,12 +112,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ValidationServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BookStoreWebbApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.service.validation" />
+      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.service.validation.ValidationServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ValidationUtilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BookStoreWebbApp" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.task.bookstorewebbapp.utils.*" />
-          <option name="ENABLED" value="true" />
+          <option name="ENABLED" value="false" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.utils" />
@@ -185,6 +174,9 @@
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="53143" />
+      </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -224,6 +216,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ValidationServiceImplTest" />
         <item itemvalue="JUnit.ValidationUtilsTest" />
         <item itemvalue="JUnit.ValidationUtilsTest.validateCredentialExist" />
         <item itemvalue="Application.main" />
@@ -246,6 +239,10 @@
       <workItem from="1675928987694" duration="13124000" />
       <workItem from="1675955443658" duration="5313000" />
       <workItem from="1675960934716" duration="8576000" />
+      <workItem from="1676093720709" duration="596000" />
+      <workItem from="1676096969047" duration="8460000" />
+      <workItem from="1676370269408" duration="122000" />
+      <workItem from="1676459598888" duration="6404000" />
     </task>
     <servers />
   </component>
@@ -262,16 +259,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

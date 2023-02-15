@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CaptchaRepositorySessionImpl implements CaptchaRepository{
-  private final Map<String, String> captchaMap = new HashMap<>();
-  private int id = 0;
+  private static final Map<String, String> captchaMap = new HashMap<>();
+  private static int id = 0;
   @Override
   public void storeCaptcha(HttpServletRequest request, HttpServletResponse response, String captcha) {
     request.getSession().setAttribute(Constants.CAPTCHA_ID_ATTRIBUTE, id);
@@ -19,6 +19,6 @@ public class CaptchaRepositorySessionImpl implements CaptchaRepository{
   public String getCaptchaCode(HttpServletRequest request) {
     String captchaId = String.valueOf(request.getSession().getAttribute(Constants.CAPTCHA_ID_ATTRIBUTE));
     request.getSession().removeAttribute(Constants.CAPTCHA_ID_ATTRIBUTE);
-    return captchaMap.get(captchaId);
+    return captchaMap.getOrDefault(captchaId, null);
   }
 }

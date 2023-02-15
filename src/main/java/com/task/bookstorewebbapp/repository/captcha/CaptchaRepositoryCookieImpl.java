@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CaptchaRepositoryCookieImpl implements CaptchaRepository{
-  private final Map<String, String> captchaMap = new HashMap<>();
-  private int id = 0;
+  private static final Map<String, String> captchaMap = new HashMap<>();
+  private static int id = 0;
 
   @Override
   public void storeCaptcha(HttpServletRequest request, HttpServletResponse response, String captcha) {
@@ -19,14 +19,13 @@ public class CaptchaRepositoryCookieImpl implements CaptchaRepository{
 
   @Override
   public String getCaptchaCode(HttpServletRequest request) {
-    Cookie[] cookies = request.getCookies();
     String captchaId = "";
-    for (Cookie cookie: cookies){
+    for (Cookie cookie: request.getCookies()){
       if (cookie.getName().equals(Constants.CAPTCHA_ID_ATTRIBUTE)){
         captchaId = cookie.getValue();
       }
     }
-    String captchaCode = captchaMap.getOrDefault(captchaId, "there is no cookie");
+    String captchaCode = captchaMap.getOrDefault(captchaId, null);
     captchaMap.remove(captchaId);
     return captchaCode;
   }

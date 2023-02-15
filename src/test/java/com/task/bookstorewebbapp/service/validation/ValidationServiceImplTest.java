@@ -1,38 +1,57 @@
-package com.task.bookstorewebbapp.utils;
+package com.task.bookstorewebbapp.service.validation;
 
-import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.mock;
 
 import com.task.bookstorewebbapp.entity.UserEntity;
 import com.task.bookstorewebbapp.model.RegistrationForm;
-import com.task.bookstorewebbapp.service.UserService;
+import com.task.bookstorewebbapp.service.captcha.CaptchaServiceImpl;
+import com.task.bookstorewebbapp.service.user.UserServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.mockito.internal.util.reflection.Whitebox;
 
-class ValidationUtilsTest {
-  static MockedStatic<UserService> userServiceMockedStatic = mockStatic(UserService.class, Mockito.CALLS_REAL_METHODS);
-  static {
-    userServiceMockedStatic.when(() -> UserService.getUserByEmail(Mockito.anyString())).then(InvocationOnMock -> null);
-    userServiceMockedStatic.when(() -> UserService.getUserByEmail("example@email.com")).then(InvocationOnMock -> new UserEntity());
-    userServiceMockedStatic.when(() -> UserService.getUserByNickname(Mockito.anyString())).then(InvocationOnMock -> null);
-    userServiceMockedStatic.when(() -> UserService.getUserByNickname("Nick1")).then(InvocationOnMock -> new UserEntity());
+class ValidationServiceImplTest {
+
+
+
+  private final HttpServletRequest request = mock(HttpServletRequest.class);
+  private final UserServiceImpl userService = mock(UserServiceImpl.class);
+  private final CaptchaServiceImpl captchaService = mock(CaptchaServiceImpl.class);
+  private final ValidationServiceImpl validationService = new ValidationServiceImpl();
+
+  {
+    Whitebox.setInternalState(validationService, "captchaService", captchaService);
+    Whitebox.setInternalState(validationService, "userService", userService);
+  }
+
+  @BeforeEach
+  void setUp() {
+    Mockito.when(userService.getUserByEmail(Mockito.anyString())).thenReturn(null);
+    Mockito.when(userService.getUserByEmail("example@email.com")).thenReturn(new UserEntity());
+    Mockito.when(userService.getUserByNickname(Mockito.anyString())).thenReturn(null);
+    Mockito.when(userService.getUserByNickname("Nick1")).thenReturn(new UserEntity());
+    Mockito.when(captchaService.validateCaptcha(request)).thenReturn("");
   }
 
   @ParameterizedTest
   @MethodSource("getValidationParams")
-  void validateRegForm(RegistrationForm registrationForm, String error, RegistrationForm registrationFormAfter) {
-    Assertions.assertEquals(error, ValidationUtils.validateRegForm(registrationForm));
+  void validateRegForm(RegistrationForm registrationForm, String error,
+      RegistrationForm registrationFormAfter) {
+    Assertions.assertEquals(error, validationService.validate(request, registrationForm));
     Assertions.assertEquals(registrationFormAfter, registrationForm);
   }
 
   @ParameterizedTest
   @MethodSource("getCredentialCheckParams")
-  void validateCredentialExist(RegistrationForm registrationForm, String error, RegistrationForm registrationFormAfter) {
-    Assertions.assertEquals(error, ValidationUtils.validateCredentialExist(registrationForm));
+  void validateCredentialExist(RegistrationForm registrationForm, String error,
+      RegistrationForm registrationFormAfter) {
+    Assertions.assertEquals(error, validationService.validate(request, registrationForm));
     Assertions.assertEquals(registrationFormAfter, registrationForm);
   }
 
@@ -45,34 +64,34 @@ class ValidationUtilsTest {
             new RegistrationForm("", "", "",
                 "", "", "", false)),
         Arguments.of(
-            new RegistrationForm("example@email.com", "incorrerct name", "incorrectSurname",
+            new RegistrationForm("example12@email.com", "incorrerct name", "incorrectSurname",
                 "1ncorrect nick", "incorrectPass", "incorrectRepeatPass", false),
             "Name isn`t valid Surname isn`t valid Nickname isn`t valid Password isn`t valid",
-            new RegistrationForm("example@email.com", "", "",
+            new RegistrationForm("example12@email.com", "", "",
                 "", "", "", false)),
         Arguments.of(
-            new RegistrationForm("example@email.com", "incorrerct name", "Surname",
+            new RegistrationForm("example12@email.com", "incorrerct name", "Surname",
                 "1ncorrect nick", "incorrectPass", "incorrectRepeatPass", false),
             "Name isn`t valid Nickname isn`t valid Password isn`t valid",
-            new RegistrationForm("example@email.com", "", "Surname",
+            new RegistrationForm("example12@email.com", "", "Surname",
                 "", "", "", false)),
         Arguments.of(
-            new RegistrationForm("example@email.com", "Name", "Surname",
+            new RegistrationForm("example12@email.com", "Name", "Surname",
                 "1ncorrect nick", "incorrectPass", "incorrectRepeatPass", false),
             "Nickname isn`t valid Password isn`t valid",
-            new RegistrationForm("example@email.com", "Name", "Surname",
+            new RegistrationForm("example12@email.com", "Name", "Surname",
                 "", "", "", false)),
         Arguments.of(
-            new RegistrationForm("example@email.com", "Name", "Surname",
+            new RegistrationForm("example12@email.com", "Name", "Surname",
                 "Nick", "12345678", "incorrectRepeatPass", false),
             "Password isn`t valid",
-            new RegistrationForm("example@email.com", "Name", "Surname",
+            new RegistrationForm("example12@email.com", "Name", "Surname",
                 "Nick", "", "", false)),
         Arguments.of(
-            new RegistrationForm("example@email.com", "Name", "Surname",
+            new RegistrationForm("example12@email.com", "Name", "Surname",
                 "Nick", "12345678", "12345678", false),
             "",
-            new RegistrationForm("example@email.com", "Name", "Surname",
+            new RegistrationForm("example12@email.com", "Name", "Surname",
                 "Nick", "12345678", "12345678", false))
     );
   }
@@ -105,4 +124,5 @@ class ValidationUtilsTest {
                 "12345678", "12345678", false))
     );
   }
+
 }

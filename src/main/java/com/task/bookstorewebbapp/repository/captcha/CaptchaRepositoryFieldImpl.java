@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class CaptchaRepositoryFieldImpl implements CaptchaRepository {
 
-  private final Map<String, String> captchaMap = new HashMap<>();
-  private int id = 0;
+  private static final Map<String, String> captchaMap = new HashMap<>();
+  private static int id = 0;
 
   @Override
   public void storeCaptcha(HttpServletRequest request, HttpServletResponse response,
@@ -21,7 +21,7 @@ public class CaptchaRepositoryFieldImpl implements CaptchaRepository {
   @Override
   public String getCaptchaCode(HttpServletRequest request) {
     String captchaId = String.valueOf(request.getParameter(Constants.CAPTCHA_ID_ATTRIBUTE));
-    String captchaCode = captchaMap.get(captchaId);
+    String captchaCode = captchaMap.getOrDefault(captchaId, null);
     captchaMap.remove(captchaId);
     return captchaCode;
   }

@@ -1,10 +1,12 @@
 package com.task.bookstorewebbapp.utils;
 
 import com.task.bookstorewebbapp.Constants;
-import com.task.bookstorewebbapp.entity.UserEntity;
 import com.task.bookstorewebbapp.model.RegistrationForm;
-import com.task.bookstorewebbapp.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 
 public class ValidationUtils {
 
@@ -20,6 +22,34 @@ public class ValidationUtils {
   private static final String EMAIL_REGEX = "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
   private static final String NICKNAME_REGEX = "^\\D[^@#!]{3,23}";
 
+  private static final Map<Predicate<RegistrationForm>, BiConsumer<RegistrationForm, StringBuilder>> validationMap = new LinkedHashMap<>();
+
+  static {
+    validationMap.put((registrationForm -> validateEmail(registrationForm.getEmail())),
+        (registrationForm, builder) -> {
+          registrationForm.setEmail("");
+          builder.append(Constants.EMAIL_NOT_VALID).append(" ");
+        });
+    validationMap.put((registrationForm -> validateName(registrationForm.getName())),
+        (registrationForm, builder) -> {
+          registrationForm.setName("");
+          builder.append(Constants.NAME_NOT_VALID).append(" ");
+        });
+    validationMap.put((registrationForm -> validateName(registrationForm.getSurname())),
+        (registrationForm, builder) -> {
+          registrationForm.setSurname("");
+          builder.append(Constants.SURNAME_NOT_VALID).append(" ");
+        });
+    validationMap.put((registrationForm -> validateNickName(registrationForm.getNickname())),
+        (registrationForm, builder) -> {
+          registrationForm.setNickname("");
+          builder.append(Constants.NICK_NAME_NOT_VALID).append(" ");
+        });
+    validationMap.put((registrationForm -> validatePassword(registrationForm.getPassword(),
+            registrationForm.getRepeatPassword())),
+        (registrationForm, builder) -> builder.append(Constants.PASSWORD_NOT_VALID).append(" "));
+
+  }
 
   private ValidationUtils() {
   }
@@ -40,53 +70,16 @@ public class ValidationUtils {
   public static String validateRegForm(RegistrationForm registrationForm) {
     StringBuilder errorBuilder = new StringBuilder("");
 
-    if (!validateEmail(registrationForm.getEmail())) {
-      registrationForm.setEmail("");
-      errorBuilder.append(Constants.EMAIL_NOT_VALID).append(" ");
-    }
-
-    if (!validateName(registrationForm.getName())) {
-      registrationForm.setName("");
-      errorBuilder.append(Constants.NAME_NOT_VALID).append(" ");
-    }
-
-    if (!validateName(registrationForm.getSurname())) {
-      registrationForm.setSurname("");
-      errorBuilder.append(Constants.SURNAME_NOT_VALID).append(" ");
-    }
-
-    if (!validateNickName(registrationForm.getNickname())) {
-      registrationForm.setNickname("");
-      errorBuilder.append(Constants.NICK_NAME_NOT_VALID).append(" ");
-    }
-
-    if (!validatePassword(registrationForm.getPassword(), registrationForm.getRepeatPassword())) {
-      errorBuilder.append(Constants.PASSWORD_NOT_VALID).append(" ");
-    }
+    validationMap.forEach((predicate, consumer) -> {
+      if (!predicate.test(registrationForm)) {
+        consumer.accept(registrationForm, errorBuilder);
+      }
+    });
 
     return getErrorString(registrationForm, errorBuilder);
 
   }
 
-  public static String validateCredentialExist(RegistrationForm registrationForm) {
-    StringBuilder errorBuilder = new StringBuilder();
-    UserEntity userEntity;
-
-    userEntity = UserService.getUserByEmail(registrationForm.getEmail());
-    if (userEntity != null) {
-      registrationForm.setEmail("");
-      errorBuilder.append(Constants.EMAIL_EXISTS).append(" ");
-    }
-
-    userEntity = UserService.getUserByNickname(registrationForm.getNickname());
-
-    if (userEntity != null) {
-      registrationForm.setNickname("");
-      errorBuilder.append(Constants.NICKNAME_EXISTS).append(" ");
-    }
-
-    return getErrorString(registrationForm, errorBuilder);
-  }
 
   private static boolean validateName(String name) {
     return name != null && name.trim().matches(NAME_REGEX);
@@ -105,7 +98,7 @@ public class ValidationUtils {
     return nickName != null && nickName.trim().matches(NICKNAME_REGEX);
   }
 
-  private static String getErrorString(RegistrationForm registrationForm,
+  public static String getErrorString(RegistrationForm registrationForm,
       StringBuilder errorBuilder) {
     String error = errorBuilder.toString().trim();
 

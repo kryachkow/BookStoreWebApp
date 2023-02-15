@@ -1,7 +1,7 @@
 package com.task.bookstorewebbapp;
 
-import com.task.bookstorewebbapp.repository.captcha.CaptchaRepositoryFieldImpl;
-import com.task.bookstorewebbapp.service.CaptchaService;
+import com.task.bookstorewebbapp.repository.captcha.CaptchaRepository;
+import com.task.bookstorewebbapp.repository.captcha.CaptchaRepositoryCookieImpl;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
@@ -9,9 +9,15 @@ import jakarta.servlet.annotation.WebListener;
 @WebListener
 public class ContextListener implements ServletContextListener {
 
+  private static CaptchaRepository captchaRepository;
+
 
   @Override
   public void contextInitialized(ServletContextEvent sce) {
-    CaptchaService.setCaptchaRepository(new CaptchaRepositoryFieldImpl());
+    captchaRepository = new CaptchaRepositoryCookieImpl();
+  }
+
+  public static CaptchaRepository getCaptchaRepository() {
+    return captchaRepository;
   }
 }
