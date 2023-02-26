@@ -5,9 +5,11 @@ import java.util.List;
 
 public class ServletUtils {
 
-  private ServletUtils(){}
+  private ServletUtils() {
+  }
 
-  public static void sessionAttributesToRequest(HttpServletRequest request, List<String> attributes){
+  public static void sessionAttributesToRequest(HttpServletRequest request,
+      List<String> attributes) {
     attributes.forEach(
         attribute -> {
           request.setAttribute(attribute, request.getSession().getAttribute(attribute));

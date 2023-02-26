@@ -28,7 +28,6 @@ public class UserEntity {
   }
 
 
-
   public long getId() {
     return id;
   }

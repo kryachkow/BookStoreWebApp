@@ -31,7 +31,8 @@ public class AvatarTag extends TagSupport {
   }
 
   private int generateUserHeader(JspWriter out, User user) throws IOException {
-    out.print(String.format(USER_NAV, user.getNickname(), user.getAvatarSource(), user.getNickname()));
+    out.print(
+        String.format(USER_NAV, user.getNickname(), user.getAvatarSource(), user.getNickname()));
     return SKIP_BODY;
   }
 

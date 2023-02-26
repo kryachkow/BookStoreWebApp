@@ -89,7 +89,7 @@ public class ValidationUtils {
 
   private static String validateForm(ValidationForm validationForm,
       Map<Predicate<ValidationForm>, BiConsumer<ValidationForm, StringBuilder>> validationMap) {
-    StringBuilder errorBuilder = new StringBuilder("");
+    StringBuilder errorBuilder = new StringBuilder();
 
     validationMap.forEach((predicate, consumer) -> {
       if (!predicate.test(validationForm)) {

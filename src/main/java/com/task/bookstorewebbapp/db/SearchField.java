@@ -2,7 +2,7 @@ package com.task.bookstorewebbapp.db;
 
 import java.util.Objects;
 
-public class SearchField<T>{
+public class SearchField<T> {
 
   private String name;
   private T value;

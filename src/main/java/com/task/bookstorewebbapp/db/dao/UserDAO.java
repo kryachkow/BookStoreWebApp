@@ -29,7 +29,7 @@ public class UserDAO implements DAO<UserEntity> {
 
   @Override
   public <V> UserEntity getEntityByField(SearchField<V> fieldValue) throws DAOException {
-    UserEntity user = null;
+    UserEntity user;
     try (Connection con = connectionSupplier.getConnection();
         PreparedStatement ps = con.prepareStatement(
             String.format(SELECT_BY_FIELD_STATEMENT, fieldValue.getName()))) {
@@ -47,21 +47,22 @@ public class UserDAO implements DAO<UserEntity> {
   }
 
   @Override
-  public <V> List<UserEntity> getEntitiesByField(V fieldValue) throws DAOException  {
+  public <V> List<UserEntity> getEntitiesByField(V fieldValue) throws DAOException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public List<UserEntity> getEntities() throws DAOException  {
+  public List<UserEntity> getEntities() throws DAOException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public long insertEntity(UserEntity entity) throws DAOException  {
-    long id = 0;
-    try(Connection con = connectionSupplier.getConnection();
-        PreparedStatement ps = con.prepareStatement(INSERT_USER_STATEMENT, Statement.RETURN_GENERATED_KEYS)) {
-      ps.setString(1,entity.getEmail());
+  public long insertEntity(UserEntity entity) throws DAOException {
+    long id;
+    try (Connection con = connectionSupplier.getConnection();
+        PreparedStatement ps = con.prepareStatement(INSERT_USER_STATEMENT,
+            Statement.RETURN_GENERATED_KEYS)) {
+      ps.setString(1, entity.getEmail());
       ps.setString(2, entity.getName());
       ps.setString(3, entity.getSurname());
       ps.setString(4, entity.getNickname());
@@ -78,12 +79,12 @@ public class UserDAO implements DAO<UserEntity> {
   }
 
   @Override
-  public boolean updateEntity(UserEntity entity) throws DAOException  {
+  public boolean updateEntity(UserEntity entity) throws DAOException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public boolean deleteEntity(UserEntity entity) throws DAOException  {
+  public boolean deleteEntity(UserEntity entity) throws DAOException {
     throw new UnsupportedOperationException();
   }
 

@@ -54,6 +54,7 @@ public class AuthenticationService implements ValidationService {
       return "";
     }
 
-    return ValidationUtils.getErrorString(validationForm, new StringBuilder(WRONG_CREDENTIALS_MESSAGE));
+    return ValidationUtils.getErrorString(validationForm,
+        new StringBuilder(WRONG_CREDENTIALS_MESSAGE));
   }
 }

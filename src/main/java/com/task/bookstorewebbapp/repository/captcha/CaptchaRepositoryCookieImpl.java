@@ -7,12 +7,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CaptchaRepositoryCookieImpl implements CaptchaRepository{
+public class CaptchaRepositoryCookieImpl implements CaptchaRepository {
+
   private static final Map<String, String> captchaMap = new HashMap<>();
   private static int id = 0;
 
   @Override
-  public void storeCaptcha(HttpServletRequest request, HttpServletResponse response, String captcha) {
+  public void storeCaptcha(HttpServletRequest request, HttpServletResponse response,
+      String captcha) {
     response.addCookie(new Cookie(Constants.CAPTCHA_ID_ATTRIBUTE, String.valueOf(id)));
     captchaMap.put(String.valueOf(id++), captcha);
   }
@@ -20,8 +22,8 @@ public class CaptchaRepositoryCookieImpl implements CaptchaRepository{
   @Override
   public String getCaptchaCode(HttpServletRequest request) {
     String captchaId = "";
-    for (Cookie cookie: request.getCookies()){
-      if (cookie.getName().equals(Constants.CAPTCHA_ID_ATTRIBUTE)){
+    for (Cookie cookie : request.getCookies()) {
+      if (cookie.getName().equals(Constants.CAPTCHA_ID_ATTRIBUTE)) {
         captchaId = cookie.getValue();
       }
     }

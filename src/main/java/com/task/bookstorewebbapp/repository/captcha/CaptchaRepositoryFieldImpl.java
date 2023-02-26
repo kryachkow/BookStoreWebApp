@@ -15,7 +15,7 @@ public class CaptchaRepositoryFieldImpl implements CaptchaRepository {
   public void storeCaptcha(HttpServletRequest request, HttpServletResponse response,
       String captcha) {
     request.setAttribute(Constants.CAPTCHA_ID_ATTRIBUTE, id);
-    captchaMap.put(String.valueOf(id++),captcha);
+    captchaMap.put(String.valueOf(id++), captcha);
   }
 
   @Override

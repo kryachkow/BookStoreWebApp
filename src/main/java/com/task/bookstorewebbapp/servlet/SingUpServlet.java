@@ -4,16 +4,16 @@ import com.task.bookstorewebbapp.Constants;
 import com.task.bookstorewebbapp.ProjectPaths;
 import com.task.bookstorewebbapp.db.entity.UserEntity;
 import com.task.bookstorewebbapp.db.exception.DAOException;
-import com.task.bookstorewebbapp.model.ValidationForm;
 import com.task.bookstorewebbapp.model.User;
+import com.task.bookstorewebbapp.model.ValidationForm;
 import com.task.bookstorewebbapp.repository.avatar.AvatarRepository;
 import com.task.bookstorewebbapp.repository.avatar.AvatarRepositoryImpl;
 import com.task.bookstorewebbapp.service.captcha.CaptchaService;
 import com.task.bookstorewebbapp.service.captcha.CaptchaServiceImpl;
 import com.task.bookstorewebbapp.service.user.UserService;
 import com.task.bookstorewebbapp.service.user.UserServiceImpl;
-import com.task.bookstorewebbapp.service.validation.ValidationService;
 import com.task.bookstorewebbapp.service.validation.SignUpValidationService;
+import com.task.bookstorewebbapp.service.validation.ValidationService;
 import com.task.bookstorewebbapp.utils.ServletUtils;
 import com.task.bookstorewebbapp.utils.ValidationUtils;
 import jakarta.servlet.ServletException;
@@ -35,7 +35,7 @@ public class SingUpServlet extends HttpServlet {
 
   private static final String ERROR_ATTRIBUTE = "signUpError";
   private static final String REGISTRATION_FORM_ATTRIBUTE = "registrationForm";
-  private final String AVATAR_PART = "avatar";
+  private static final String AVATAR_PART = "avatar";
 
   private final CaptchaService captchaService = new CaptchaServiceImpl();
   private final ValidationService validationService = new SignUpValidationService();
@@ -46,7 +46,8 @@ public class SingUpServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    ServletUtils.sessionAttributesToRequest(request, List.of(REGISTRATION_FORM_ATTRIBUTE, ERROR_ATTRIBUTE));
+    ServletUtils.sessionAttributesToRequest(request,
+        List.of(REGISTRATION_FORM_ATTRIBUTE, ERROR_ATTRIBUTE));
     captchaService.addCaptchaToRequest(request, response);
     request.getRequestDispatcher(ProjectPaths.REGISTER_JSP).forward(request, response);
   }
@@ -58,7 +59,7 @@ public class SingUpServlet extends HttpServlet {
     String validationError = validationService.validate(request, registrationForm);
     if (validationError.isEmpty()) {
 
-      UserEntity userEntity = null;
+      UserEntity userEntity;
       try {
         userEntity = getUserFromDataBase(registrationForm);
         User userModel = User.toModel(userEntity);

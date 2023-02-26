@@ -37,7 +37,7 @@ public class SignInServlet extends HttpServlet {
     ValidationForm validationForm = ValidationUtils.getValidationForm(req);
     String validationError = validationService.validate(req, validationForm);
 
-    if(!validationError.isEmpty()) {
+    if (!validationError.isEmpty()) {
       req.getSession().setAttribute(SIGN_IN_FORM_ATTRIBUTE, validationForm);
       req.getSession().setAttribute(ERROR_ATTRIBUTE, validationError);
       resp.sendRedirect(ProjectPaths.SIGN_IN_SERVLET);

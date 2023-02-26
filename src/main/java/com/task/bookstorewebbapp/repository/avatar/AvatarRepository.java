@@ -5,7 +5,8 @@ import java.io.IOException;
 
 public interface AvatarRepository {
 
-  void addAvatarToCatalog(Part filePart, long userId ) throws IOException;
+  void addAvatarToCatalog(Part filePart, long userId) throws IOException;
+
   String getAvatar(long userId);
 
 }

@@ -20,8 +20,8 @@ public class DBUtils {
   private DBUtils() {
     try {
       Context initContext = new InitialContext();
-      Context envContext  = (Context)initContext.lookup(CONTEXT_PATH);
-      ds = (DataSource)envContext.lookup(DATA_SOURCE_PATH);
+      Context envContext = (Context) initContext.lookup(CONTEXT_PATH);
+      ds = (DataSource) envContext.lookup(DATA_SOURCE_PATH);
     } catch (NamingException ex) {
       throw new IllegalStateException(DATA_SOURCE_EXCEPTION_MESSAGE, ex);
     }
@@ -35,7 +35,7 @@ public class DBUtils {
   }
 
   public Connection getConnection() {
-    Connection con = null;
+    Connection con;
 
     try {
       con = ds.getConnection();

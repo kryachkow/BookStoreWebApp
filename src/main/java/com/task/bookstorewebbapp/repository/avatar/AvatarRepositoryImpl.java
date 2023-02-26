@@ -17,7 +17,7 @@ public class AvatarRepositoryImpl implements AvatarRepository {
 
   public AvatarRepositoryImpl() {
     Path catalogPath = Paths.get(CATALOG_PATH);
-    if(!Files.exists(catalogPath)){
+    if (!Files.exists(catalogPath)) {
       try {
         Files.createDirectory(catalogPath);
       } catch (IOException e) {
@@ -29,8 +29,8 @@ public class AvatarRepositoryImpl implements AvatarRepository {
   @Override
   public void addAvatarToCatalog(Part filePart, long userId) throws IOException {
     Path uploadPath = Paths.get(CATALOG_PATH, userId + ".jpg");
-    if(filePart.getSize() != 0){
-      try(InputStream inputStream = filePart.getInputStream()) {
+    if (filePart.getSize() != 0) {
+      try (InputStream inputStream = filePart.getInputStream()) {
         Files.copy(inputStream, uploadPath);
       }
     }
@@ -38,8 +38,8 @@ public class AvatarRepositoryImpl implements AvatarRepository {
 
   @Override
   public String getAvatar(long userId) {
-    Path imgPath = Paths.get(CATALOG_PATH, userId  + ".jpg");
-    if(Files.exists(imgPath)){
+    Path imgPath = Paths.get(CATALOG_PATH, userId + ".jpg");
+    if (Files.exists(imgPath)) {
       try {
         return CATALOG_PATH_PART + Base64.getEncoder().encodeToString(Files.readAllBytes(imgPath));
       } catch (IOException e) {
