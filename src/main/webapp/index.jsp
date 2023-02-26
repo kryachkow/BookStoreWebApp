@@ -6,13 +6,18 @@
 </head>
 <body>
 
-<header class="align--center pt3">
-  <div class="container border--bottom pb3">
-    <h1 class="mb2">Welcome to BookStore!</h1>
-  </div>
+
+
+<header>
+  <%@include file="WEB-INF/include/navbar.jspf"%>
 </header>
 
 <main>
+  <div class="align--center pt3">
+    <div class="container border--bottom pb3">
+      <h1 class="mb2">Welcome to BookStore!</h1>
+    </div>
+  </div>
   <div class="container pt3 mt2 text--gray align--center">
     <p class="mb3">Menu</p>
     <div class="grid-row">

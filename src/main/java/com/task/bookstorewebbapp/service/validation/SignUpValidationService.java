@@ -1,7 +1,7 @@
 package com.task.bookstorewebbapp.service.validation;
 
 import com.task.bookstorewebbapp.Constants;
-import com.task.bookstorewebbapp.model.RegistrationForm;
+import com.task.bookstorewebbapp.model.ValidationForm;
 import com.task.bookstorewebbapp.service.captcha.CaptchaService;
 import com.task.bookstorewebbapp.service.captcha.CaptchaServiceImpl;
 import com.task.bookstorewebbapp.service.user.UserService;
@@ -15,15 +15,15 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
-public class ValidationServiceImpl implements ValidationService {
+public class SignUpValidationService implements ValidationService {
 
   private final CaptchaService captchaService = new CaptchaServiceImpl();
   private final UserService userService = new UserServiceImpl();
 
-  private final ArrayList<BiFunction<HttpServletRequest, RegistrationForm, String>> validationChain
+  private final ArrayList<BiFunction<HttpServletRequest, ValidationForm, String>> validationChain
       = new ArrayList<>();
 
-  private final Map<Predicate<RegistrationForm>, BiConsumer<RegistrationForm, StringBuilder>> credentialsValidationMap = new LinkedHashMap<>();
+  private final Map<Predicate<ValidationForm>, BiConsumer<ValidationForm, StringBuilder>> credentialsValidationMap = new LinkedHashMap<>();
 
   {
     validationChain.add(
@@ -49,10 +49,10 @@ public class ValidationServiceImpl implements ValidationService {
 
   @Override
   public String validate(HttpServletRequest request,
-      RegistrationForm registrationForm) {
+      ValidationForm validationForm) {
     String error = "";
-    for (BiFunction<HttpServletRequest, RegistrationForm, String> function : validationChain) {
-      error = function.apply(request, registrationForm);
+    for (BiFunction<HttpServletRequest, ValidationForm, String> function : validationChain) {
+      error = function.apply(request, validationForm);
       if (!error.isEmpty()) {
         return error;
       }
@@ -60,16 +60,16 @@ public class ValidationServiceImpl implements ValidationService {
     return error;
   }
 
-  public String validateCredentialExist(RegistrationForm registrationForm) {
+  public String validateCredentialExist(ValidationForm validationForm) {
     StringBuilder errorBuilder = new StringBuilder();
 
     credentialsValidationMap.forEach((predicate, consumer) -> {
-      if (!predicate.test(registrationForm)) {
-        consumer.accept(registrationForm, errorBuilder);
+      if (!predicate.test(validationForm)) {
+        consumer.accept(validationForm, errorBuilder);
       }
     });
 
-    return ValidationUtils.getErrorString(registrationForm, errorBuilder);
+    return ValidationUtils.getErrorString(validationForm, errorBuilder);
   }
 }
 

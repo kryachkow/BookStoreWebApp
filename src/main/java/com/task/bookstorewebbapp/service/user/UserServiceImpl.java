@@ -1,39 +1,52 @@
 package com.task.bookstorewebbapp.service.user;
 
-import com.task.bookstorewebbapp.entity.UserEntity;
-import com.task.bookstorewebbapp.repository.user.UserRepoImpl;
-import com.task.bookstorewebbapp.repository.user.UserRepository;
+import com.task.bookstorewebbapp.db.SearchField;
+import com.task.bookstorewebbapp.db.dao.DAO;
+import com.task.bookstorewebbapp.db.dao.UserDAO;
+import com.task.bookstorewebbapp.db.entity.UserEntity;
+import com.task.bookstorewebbapp.db.exception.DAOException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-  private final UserRepository repository = new UserRepoImpl();
+  private static final String NICKNAME_FIELD = "nickname";
+  private static final String EMAIL_FIELD = "email";
+
+  private final DAO<UserEntity> userDAO = new UserDAO();
 
   @Override
   public UserEntity getUserByNickname(String nickname) {
-    return repository.getUserByNickname(nickname);
+    try {
+      return userDAO.getEntityByField(new SearchField<>(NICKNAME_FIELD, nickname));
+    } catch (DAOException e) {
+      return null;
+    }
   }
 
   @Override
   public UserEntity getUserByEmail(String email) {
-    return repository.getUserByEmail(email);
+    try {
+      return userDAO.getEntityByField(new SearchField<>(EMAIL_FIELD, email));
+    } catch (DAOException e) {
+      return null;
+    }
   }
 
   @Override
   public UserEntity addUser(String email, String name, String surname, String nickname,
       String password,
-      boolean mailingSubscription) {
-    long id = repository.addUser(email, name, surname, nickname, password, mailingSubscription);
-    if (id >= 0) {
-      return new UserEntity(id, email, name, surname, nickname, password, mailingSubscription);
-    }
-    return null;
+      boolean mailingSubscription) throws DAOException {
+    UserEntity userEntity = new UserEntity();
+    userEntity.setEmail(email);
+    userEntity.setName(name);
+    userEntity.setSurname(surname);
+    userEntity.setNickname(nickname);
+    userEntity.setPassword(password);
+    userEntity.setMailingSubscription(mailingSubscription);
+    userEntity.setId(userDAO.insertEntity(userEntity));
+    return userEntity;
   }
 
-  @Override
-  public boolean banUser(long id) {
-    return false;
-  }
 
   @Override
   public List<UserEntity> getUsers() {

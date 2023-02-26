@@ -1,4 +1,4 @@
-package com.task.bookstorewebbapp.entity;
+package com.task.bookstorewebbapp.db.entity;
 
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ public class UserEntity {
   private String email;
   private String name;
   private String surname;
-  private String nickName;
+  private String nickname;
   private String password;
   private boolean mailingSubscription;
 
@@ -22,10 +22,12 @@ public class UserEntity {
     this.email = email;
     this.name = name;
     this.surname = surname;
-    this.nickName = nickName;
+    this.nickname = nickName;
     this.password = password;
     this.mailingSubscription = mailingSubscription;
   }
+
+
 
   public long getId() {
     return id;
@@ -59,12 +61,12 @@ public class UserEntity {
     this.surname = surname;
   }
 
-  public String getNickName() {
-    return nickName;
+  public String getNickname() {
+    return nickname;
   }
 
-  public void setNickName(String nickName) {
-    this.nickName = nickName;
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
   }
 
   public String getPassword() {
@@ -94,13 +96,13 @@ public class UserEntity {
     UserEntity that = (UserEntity) o;
     return getId() == that.getId() && isMailingSubscription() == that.isMailingSubscription()
         && getEmail().equals(that.getEmail()) && getName().equals(that.getName())
-        && getSurname().equals(that.getSurname()) && getNickName().equals(that.getNickName())
+        && getSurname().equals(that.getSurname()) && getNickname().equals(that.getNickname())
         && getPassword().equals(that.getPassword());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getId(), getEmail(), getName(), getSurname(), getNickName(), getPassword(),
+    return Objects.hash(getId(), getEmail(), getName(), getSurname(), getNickname(), getPassword(),
         isMailingSubscription());
   }
 
@@ -111,7 +113,7 @@ public class UserEntity {
         ", email='" + email + '\'' +
         ", name='" + name + '\'' +
         ", surname='" + surname + '\'' +
-        ", nickName='" + nickName + '\'' +
+        ", nickName='" + nickname + '\'' +
         ", password='" + password + '\'' +
         ", mailingSubscription=" + mailingSubscription +
         '}';

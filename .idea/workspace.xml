@@ -9,24 +9,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="Redurant class removed, minor style fixes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/CaptchaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImplTest.java" afterDir="false" />
+    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="Fixes to 11th task">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ProjectPaths.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/DBUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/SearchField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/exception/DAOException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/AvatarRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/AvatarRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/AuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SignInServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/tag/AvatarTag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ServletUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/avatarTag.tld" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/navbar.jspf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signIn.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/img/baseAvatar.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/signInValidation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/AuthenticationServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/CaptchaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/CaptchaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Paths.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/ValidationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/user/UserRepoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/user/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/SignUpValidationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/utils/ValidationUtilsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/captchaTag.tld" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/captchaTag.tld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signUp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/SignUpValidationServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,14 +64,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="Jsp File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -70,22 +103,26 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Колесников Примеры/Online-Store-master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Documents/BookStoreWebbApp/src/main/webapp/js&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\js" />
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\img" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF\view" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp" />
     </key>
@@ -98,7 +135,7 @@
       <recent name="com.task.bookstorewebbapp.servlet" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ValidationServiceImplTest">
+  <component name="RunManager" selected="JUnit.AuthenticationServiceTest">
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.utils.main" />
       <module name="BookStoreWebbApp" />
@@ -112,7 +149,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidationServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AuthenticationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BookStoreWebbApp" />
       <extension name="coverage">
         <pattern>
@@ -121,7 +158,22 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.service.validation" />
-      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.service.validation.ValidationServiceImplTest" />
+      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.service.validation.AuthenticationServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SignUpValidationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BookStoreWebbApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.service.validation" />
+      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.service.validation.SignUpValidationServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -216,7 +268,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ValidationServiceImplTest" />
+        <item itemvalue="JUnit.AuthenticationServiceTest" />
+        <item itemvalue="JUnit.SignUpValidationServiceTest" />
         <item itemvalue="JUnit.ValidationUtilsTest" />
         <item itemvalue="JUnit.ValidationUtilsTest.validateCredentialExist" />
         <item itemvalue="Application.main" />
@@ -243,6 +296,12 @@
       <workItem from="1676096969047" duration="8460000" />
       <workItem from="1676370269408" duration="122000" />
       <workItem from="1676459598888" duration="6404000" />
+      <workItem from="1677161068752" duration="3222000" />
+      <workItem from="1677164924169" duration="2185000" />
+      <workItem from="1677243600530" duration="3372000" />
+      <workItem from="1677327069212" duration="12814000" />
+      <workItem from="1677402802334" duration="22000" />
+      <workItem from="1677408420929" duration="4160000" />
     </task>
     <servers />
   </component>
@@ -254,7 +313,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="task12" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

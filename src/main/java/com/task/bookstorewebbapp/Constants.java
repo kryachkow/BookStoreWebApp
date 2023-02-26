@@ -2,7 +2,8 @@ package com.task.bookstorewebbapp;
 
 public interface Constants {
 
-  public static final String EMAIL_NOT_VALID = "Email isn`t valid";
+  static final String USER_ATTRIBUTE = "user";
+  static final String EMAIL_NOT_VALID = "Email isn`t valid";
   public static final String NAME_NOT_VALID = "Name isn`t valid";
   public static final String SURNAME_NOT_VALID = "Surname isn`t valid";
   public static final String NICK_NAME_NOT_VALID = "Nickname isn`t valid";
