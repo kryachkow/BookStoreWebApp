@@ -2,7 +2,7 @@ package com.task.bookstorewebbapp.model;
 
 import java.util.Objects;
 
-public class ValidationForm {
+public class UserFormDTO {
 
   private String email;
   private String name;
@@ -13,10 +13,10 @@ public class ValidationForm {
   private boolean mailingSubscription;
 
 
-  public ValidationForm() {
+  public UserFormDTO() {
   }
 
-  public ValidationForm(String email, String name, String surname, String nickname,
+  public UserFormDTO(String email, String name, String surname, String nickname,
       String password, String repeatPassword, boolean mailingSubscription) {
     this.email = email;
     this.name = name;
@@ -89,10 +89,10 @@ public class ValidationForm {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof ValidationForm)) {
+    if (!(o instanceof UserFormDTO)) {
       return false;
     }
-    ValidationForm that = (ValidationForm) o;
+    UserFormDTO that = (UserFormDTO) o;
     return isMailingSubscription() == that.isMailingSubscription() && getEmail().equals(
         that.getEmail()) && getName().equals(that.getName()) && getSurname().equals(
         that.getSurname())

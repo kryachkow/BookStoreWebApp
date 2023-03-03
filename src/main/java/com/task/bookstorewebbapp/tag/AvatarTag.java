@@ -1,6 +1,6 @@
 package com.task.bookstorewebbapp.tag;
 
-import com.task.bookstorewebbapp.Constants;
+import com.task.bookstorewebbapp.utils.Constants;
 import com.task.bookstorewebbapp.model.User;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;

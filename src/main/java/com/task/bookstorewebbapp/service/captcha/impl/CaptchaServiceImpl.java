@@ -1,7 +1,8 @@
-package com.task.bookstorewebbapp.service.captcha;
+package com.task.bookstorewebbapp.service.captcha.impl;
 
-import com.task.bookstorewebbapp.Constants;
-import com.task.bookstorewebbapp.ContextListener;
+import com.task.bookstorewebbapp.service.captcha.CaptchaService;
+import com.task.bookstorewebbapp.utils.Constants;
+import com.task.bookstorewebbapp.listener.ContextListener;
 import com.task.bookstorewebbapp.repository.captcha.CaptchaRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +29,7 @@ public class CaptchaServiceImpl implements CaptchaService {
   private static final String CAPTCHA_INVALID_MESSAGE = "Captcha is invalid, try again";
   private static final long seed = 1032183012973129L;
   private static final Random random = new Random(seed);
-  private final static int targetStringLength = 6;
+  private static final int targetStringLength = 6;
   private static final Font FONT = new Font("Verdana", Font.BOLD, 26);
   private static final Color COLOR = new Color(0.6662f, 0.4569f, 0.3232f);
   private static final GradientPaint GRADIENT_PAINT = new GradientPaint(30, 30, COLOR, 15, 25,

@@ -9,65 +9,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="Fixes to 11th task">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ProjectPaths.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/DBUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/SearchField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/DAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/exception/DAOException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/AvatarRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/AvatarRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/AuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SignInServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/tag/AvatarTag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ServletUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/avatarTag.tld" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/navbar.jspf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signIn.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/img/baseAvatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/signInValidation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/AuthenticationServiceTest.java" afterDir="false" />
+    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="Minor code cleanup">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/ValidationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/PasswordUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/properties/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Paths.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/entity/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/ValidationForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/user/UserRepoImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/user/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/listener/ContextListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ProjectPaths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ProjectPaths.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/DBUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/SearchField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/SearchField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/impl/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/ValidationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/UserFormDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/AvatarRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/impl/AvatarRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/impl/CaptchaRepositoryCookieImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/impl/CaptchaRepositoryFieldImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/impl/CaptchaRepositorySessionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/CaptchaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/impl/CaptchaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/impl/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/SignUpValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/impl/SignUpValidationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/SignUpValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SignInServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SignInServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/tag/AvatarTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/tag/AvatarTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/tag/CaptchaTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/tag/CaptchaTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ServletUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ServletUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/captchaTag.tld" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/include/captchaTag.tld" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signUp.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/SignUpValidationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/AuthenticationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/AuthenticationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/SignUpValidationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/SignUpValidationServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -103,20 +99,22 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Documents/BookStoreWebbApp/src/main/webapp/js&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Documents/BookStoreWebbApp/src/main/java/com/task/bookstorewebbapp/db/dao&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\java\com\task\bookstorewebbapp\db\dao" />
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\java\com\task\bookstorewebbapp\repository\captcha" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\js" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp" />
@@ -135,7 +133,7 @@
       <recent name="com.task.bookstorewebbapp.servlet" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AuthenticationServiceTest">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.20">
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.utils.main" />
       <module name="BookStoreWebbApp" />
@@ -153,7 +151,7 @@
       <module name="BookStoreWebbApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.*" />
+          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -168,7 +166,7 @@
       <module name="BookStoreWebbApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.*" />
+          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -268,8 +266,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AuthenticationServiceTest" />
         <item itemvalue="JUnit.SignUpValidationServiceTest" />
+        <item itemvalue="JUnit.AuthenticationServiceTest" />
         <item itemvalue="JUnit.ValidationUtilsTest" />
         <item itemvalue="JUnit.ValidationUtilsTest.validateCredentialExist" />
         <item itemvalue="Application.main" />
@@ -301,8 +299,29 @@
       <workItem from="1677243600530" duration="3372000" />
       <workItem from="1677327069212" duration="12814000" />
       <workItem from="1677402802334" duration="22000" />
-      <workItem from="1677408420929" duration="4160000" />
+      <workItem from="1677408420929" duration="5406000" />
+      <workItem from="1677496900574" duration="6375000" />
+      <workItem from="1677582533714" duration="5445000" />
+      <workItem from="1677662903078" duration="9448000" />
+      <workItem from="1677742970415" duration="6566000" />
+      <workItem from="1677828363246" duration="1236000" />
+      <workItem from="1677830275787" duration="289000" />
     </task>
+    <task id="LOCAL-00001" summary="Task 12 &#10;&#10;part1 database created, attaching db through connection pool configuration in environment context, implemented DBUtils class for obtaining connections from database UserRepo was remade to UserDAO implemented method needed for functionality, UserService updated.&#10;&#10;part2 signIn.jsp created with servlet needed, authentication implemented though ValidationService interface as AuthenticationService, RegistrationForm was refactored to ValidationForm for code reusability, custom tag for signIn/avatar was implemented as AvatarTag class.&#10;&#10;part3 singUp.jsp as SignUpServlet were refactored to obtain .jgp files as avatars, AvatarRepository created to save and retrieve(as Base64 string) from disk folder, User class was expanded with avatarSource field for storing avatar in user session.  &#10;&#10;additional: test for AuthenticationService, minor unmentioned refactoring">
+      <created>1677414472160</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677414472160</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Minor code cleanup">
+      <created>1677414930794</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677414930794</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,5 +349,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task 12 &#10;&#10;part1 database created, attaching db through connection pool configuration in environment context, implemented DBUtils class for obtaining connections from database UserRepo was remade to UserDAO implemented method needed for functionality, UserService updated.&#10;&#10;part2 signIn.jsp created with servlet needed, authentication implemented though ValidationService interface as AuthenticationService, RegistrationForm was refactored to ValidationForm for code reusability, custom tag for signIn/avatar was implemented as AvatarTag class.&#10;&#10;part3 singUp.jsp as SignUpServlet were refactored to obtain .jgp files as avatars, AvatarRepository created to save and retrieve(as Base64 string) from disk folder, User class was expanded with avatarSource field for storing avatar in user session.  &#10;&#10;additional: test for AuthenticationService, minor unmentioned refactoring" />
+    <MESSAGE value="Minor code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor code cleanup" />
   </component>
 </project>

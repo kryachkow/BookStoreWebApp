@@ -1,10 +1,12 @@
-package com.task.bookstorewebbapp.service.user;
+package com.task.bookstorewebbapp.service.user.impl;
 
 import com.task.bookstorewebbapp.db.SearchField;
 import com.task.bookstorewebbapp.db.dao.DAO;
-import com.task.bookstorewebbapp.db.dao.UserDAO;
+import com.task.bookstorewebbapp.db.dao.impl.UserDAO;
 import com.task.bookstorewebbapp.db.entity.UserEntity;
 import com.task.bookstorewebbapp.db.exception.DAOException;
+import com.task.bookstorewebbapp.service.user.UserService;
+import com.task.bookstorewebbapp.utils.PasswordUtils;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
     userEntity.setName(name);
     userEntity.setSurname(surname);
     userEntity.setNickname(nickname);
-    userEntity.setPassword(password);
+    userEntity.setPassword(PasswordUtils.encodePassword(password));
     userEntity.setMailingSubscription(mailingSubscription);
     userEntity.setId(userDAO.insertEntity(userEntity));
     return userEntity;

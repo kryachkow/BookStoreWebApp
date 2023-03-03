@@ -1,6 +1,7 @@
-package com.task.bookstorewebbapp.repository.captcha;
+package com.task.bookstorewebbapp.repository.captcha.impl;
 
-import com.task.bookstorewebbapp.Constants;
+import com.task.bookstorewebbapp.repository.captcha.CaptchaRepository;
+import com.task.bookstorewebbapp.utils.Constants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.HashMap;

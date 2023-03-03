@@ -1,10 +1,12 @@
 package com.task.bookstorewebbapp.servlet;
 
 
-import com.task.bookstorewebbapp.ProjectPaths;
-import com.task.bookstorewebbapp.model.ValidationForm;
-import com.task.bookstorewebbapp.service.validation.AuthenticationService;
+import com.task.bookstorewebbapp.model.User;
+import com.task.bookstorewebbapp.model.ValidationDTO;
 import com.task.bookstorewebbapp.service.validation.ValidationService;
+import com.task.bookstorewebbapp.service.validation.impl.AuthenticationService;
+import com.task.bookstorewebbapp.utils.Constants;
+import com.task.bookstorewebbapp.utils.ProjectPaths;
 import com.task.bookstorewebbapp.utils.ServletUtils;
 import com.task.bookstorewebbapp.utils.ValidationUtils;
 import jakarta.servlet.ServletException;
@@ -18,7 +20,7 @@ import java.util.List;
 @WebServlet(name = "signIn", value = "/signIn")
 public class SignInServlet extends HttpServlet {
 
-  private final ValidationService validationService = new AuthenticationService();
+  private final ValidationService<User> validationService = new AuthenticationService();
   private static final String ERROR_ATTRIBUTE = "signInError";
   private static final String SIGN_IN_FORM_ATTRIBUTE = "signInForm";
 
@@ -34,16 +36,14 @@ public class SignInServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
-    ValidationForm validationForm = ValidationUtils.getValidationForm(req);
-    String validationError = validationService.validate(req, validationForm);
+    ValidationDTO<User> validationDTO = new ValidationDTO<>(req, ValidationUtils.getValidationForm(req));
 
-    if (!validationError.isEmpty()) {
-      req.getSession().setAttribute(SIGN_IN_FORM_ATTRIBUTE, validationForm);
-      req.getSession().setAttribute(ERROR_ATTRIBUTE, validationError);
+    if (validationService.checkErrors(validationDTO)) {
+      req.getSession().setAttribute(SIGN_IN_FORM_ATTRIBUTE, validationDTO.getUserFormDTO());
+      req.getSession().setAttribute(ERROR_ATTRIBUTE, validationDTO.getErrorMessage().toString().trim());
       resp.sendRedirect(ProjectPaths.SIGN_IN_SERVLET);
-
     } else {
-
+      req.getSession().setAttribute(Constants.USER_ATTRIBUTE, validationDTO.getReturnValue());
       resp.sendRedirect(ProjectPaths.INDEX_JSP);
     }
   }

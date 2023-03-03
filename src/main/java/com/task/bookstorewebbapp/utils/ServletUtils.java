@@ -3,7 +3,7 @@ package com.task.bookstorewebbapp.utils;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class ServletUtils {
+public final class ServletUtils {
 
   private ServletUtils() {
   }

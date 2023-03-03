@@ -1,7 +1,8 @@
-package com.task.bookstorewebbapp.db.dao;
+package com.task.bookstorewebbapp.db.dao.impl;
 
 import com.task.bookstorewebbapp.db.DBUtils;
 import com.task.bookstorewebbapp.db.SearchField;
+import com.task.bookstorewebbapp.db.dao.DAO;
 import com.task.bookstorewebbapp.db.entity.UserEntity;
 import com.task.bookstorewebbapp.db.exception.DAOException;
 import java.sql.Connection;
@@ -10,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class UserDAO implements DAO<UserEntity> {
 
@@ -23,6 +26,8 @@ public class UserDAO implements DAO<UserEntity> {
 
   private static final String SELECT_BY_FIELD_STATEMENT = "SELECT * FROM users WHERE %s = ?";
   private static final String INSERT_USER_STATEMENT = "INSERT INTO `users`(`email`,`name`,`surname`,`nickname`,`password`,`mailing_subscription`) VALUES(?,?,?,?,?,?)";
+
+  private static final Logger LOGGER = LogManager.getLogger(UserDAO.class.getName());
 
   private final DBUtils connectionSupplier = DBUtils.getInstance();
 
@@ -38,10 +43,11 @@ public class UserDAO implements DAO<UserEntity> {
       if (rs.next()) {
         user = mapToUserEntity(rs);
       } else {
-        throw new SQLException();
+        throw new SQLException("There is no user with such" + fieldValue.getName());
       }
     } catch (SQLException e) {
-      throw new DAOException("Cannot select user by Id", e);
+      LOGGER.warn("Cannot select user by " + fieldValue.getName(), e);
+      throw new DAOException("Cannot select user by" + fieldValue.getName(), e);
     }
     return user;
   }
@@ -73,6 +79,7 @@ public class UserDAO implements DAO<UserEntity> {
       generatedKeys.next();
       id = generatedKeys.getInt(1);
     } catch (SQLException e) {
+      LOGGER.error("Cannot insert user ", e);
       throw new DAOException("Cannot insert user", e);
     }
     return id;

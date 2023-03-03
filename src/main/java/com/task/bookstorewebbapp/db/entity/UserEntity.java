@@ -113,7 +113,6 @@ public class UserEntity {
         ", name='" + name + '\'' +
         ", surname='" + surname + '\'' +
         ", nickName='" + nickname + '\'' +
-        ", password='" + password + '\'' +
         ", mailingSubscription=" + mailingSubscription +
         '}';
   }

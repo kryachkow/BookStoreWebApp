@@ -99,7 +99,7 @@
 
             <div class="inline-block">
                 <label class="h3 text--white mb1 p1 bold" for="avatar">Upload JPG avatar!</label>
-                <input class="btb btn--sm " type="file" name="avatar" id = "avatar" accept=".jpg">
+                <input class="btb btn--sm " type="file" name="avatar" id = "avatar" accept="image/*">
             </div>
 
             <div class="centered p1">

@@ -1,14 +1,15 @@
 package com.task.bookstorewebbapp.utils;
 
-import com.task.bookstorewebbapp.Constants;
-import com.task.bookstorewebbapp.model.ValidationForm;
+import com.task.bookstorewebbapp.model.User;
+import com.task.bookstorewebbapp.model.UserFormDTO;
+import com.task.bookstorewebbapp.model.ValidationDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class ValidationUtils {
+public final class ValidationUtils {
 
   private static final String EMAIL_PARAMETER = "email";
   private static final String NAME_PARAMETER = "name";
@@ -23,50 +24,50 @@ public class ValidationUtils {
   private static final String EMAIL_REGEX = "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
   private static final String NICKNAME_REGEX = "^\\D[^@#!]{3,31}";
 
-  private static final Map<Predicate<ValidationForm>, BiConsumer<ValidationForm, StringBuilder>> regFormValidationMap = new LinkedHashMap<>();
-  private static final Map<Predicate<ValidationForm>, BiConsumer<ValidationForm, StringBuilder>> signInValidationMap = new LinkedHashMap<>();
+  private static final Map<Predicate<UserFormDTO>, Consumer<ValidationDTO<User>>> regFormValidationMap = new LinkedHashMap<>();
+  private static final Map<Predicate<UserFormDTO>, Consumer<ValidationDTO<User>>> signInValidationMap = new LinkedHashMap<>();
 
   static {
-    regFormValidationMap.put((registrationForm -> validateEmail(registrationForm.getEmail())),
-        (registrationForm, builder) -> {
-          registrationForm.setEmail("");
-          builder.append(Constants.EMAIL_NOT_VALID).append(" ");
+    regFormValidationMap.put((userFormDTO -> validateEmail(userFormDTO.getEmail())),
+        (validationDTO) -> {
+          validationDTO.getUserFormDTO().setEmail("");
+          validationDTO.getErrorMessage().append(Constants.EMAIL_NOT_VALID).append(" ");
         });
-    regFormValidationMap.put((registrationForm -> validateName(registrationForm.getName())),
-        (registrationForm, builder) -> {
-          registrationForm.setName("");
-          builder.append(Constants.NAME_NOT_VALID).append(" ");
+    regFormValidationMap.put((userFormDTO -> validateName(userFormDTO.getName())),
+        (validationDTO) -> {
+          validationDTO.getUserFormDTO().setName("");
+          validationDTO.getErrorMessage().append(Constants.NAME_NOT_VALID).append(" ");
         });
-    regFormValidationMap.put((registrationForm -> validateName(registrationForm.getSurname())),
-        (registrationForm, builder) -> {
-          registrationForm.setSurname("");
-          builder.append(Constants.SURNAME_NOT_VALID).append(" ");
+    regFormValidationMap.put((userFormDTO -> validateName(userFormDTO.getSurname())),
+        (validationDTO) -> {
+          validationDTO.getUserFormDTO().setSurname("");
+          validationDTO.getErrorMessage().append(Constants.SURNAME_NOT_VALID).append(" ");
         });
-    regFormValidationMap.put((registrationForm -> validateNickName(registrationForm.getNickname())),
-        (registrationForm, builder) -> {
-          registrationForm.setNickname("");
-          builder.append(Constants.NICK_NAME_NOT_VALID).append(" ");
+    regFormValidationMap.put((userFormDTO -> validateNickName(userFormDTO.getNickname())),
+        (validationDTO) -> {
+          validationDTO.getUserFormDTO().setNickname("");
+          validationDTO.getErrorMessage().append(Constants.NICK_NAME_NOT_VALID).append(" ");
         });
-    regFormValidationMap.put((registrationForm -> validatePassword(registrationForm.getPassword(),
-            registrationForm.getRepeatPassword())),
-        (registrationForm, builder) -> builder.append(Constants.PASSWORD_NOT_VALID).append(" "));
+    regFormValidationMap.put((userFormDTO -> validatePassword(userFormDTO.getPassword(),
+            userFormDTO.getRepeatPassword())),
+        (validationDTO) -> validationDTO.getErrorMessage().append(Constants.PASSWORD_NOT_VALID).append(" "));
 
-    signInValidationMap.put((validationForm -> validateEmail(validationForm.getEmail())),
-        (validationForm, builder) -> {
-          validationForm.setEmail("");
-          builder.append(Constants.EMAIL_NOT_VALID).append(" ");
+    signInValidationMap.put((userFormDTO -> validateEmail(userFormDTO.getEmail())),
+        (validationDTO) -> {
+          validationDTO.getUserFormDTO().setEmail("");
+          validationDTO.getErrorMessage().append(Constants.EMAIL_NOT_VALID).append(" ");
         });
-    signInValidationMap.put((validationForm -> validatePassword(validationForm.getPassword(),
-            validationForm.getPassword())),
-        (validationForm, builder) -> builder.append(Constants.PASSWORD_NOT_VALID).append(" "));
+    signInValidationMap.put((userFormDTO -> validatePassword(userFormDTO.getPassword(),
+            userFormDTO.getPassword())),
+        (validationDTO) -> validationDTO.getErrorMessage().append(Constants.PASSWORD_NOT_VALID).append(" "));
 
   }
 
   private ValidationUtils() {
   }
 
-  public static ValidationForm getValidationForm(HttpServletRequest request) {
-    return new ValidationForm(
+  public static UserFormDTO getValidationForm(HttpServletRequest request) {
+    return new UserFormDTO(
         request.getParameter(EMAIL_PARAMETER),
         request.getParameter(NAME_PARAMETER),
         request.getParameter(SURNAME_PARAMETER),
@@ -78,26 +79,25 @@ public class ValidationUtils {
   }
 
 
-  public static String validateRegForm(ValidationForm validationForm) {
-    return validateForm(validationForm, regFormValidationMap);
+  public static boolean validateRegForm(ValidationDTO<User> validationDTO) {
+    return validateForm(validationDTO, regFormValidationMap);
   }
 
-  public static String validateSingInForm(ValidationForm validationForm) {
-    return validateForm(validationForm, signInValidationMap);
+  public static boolean validateSingInForm(ValidationDTO<User> validationDTO) {
+     return validateForm(validationDTO, signInValidationMap);
   }
 
 
-  private static String validateForm(ValidationForm validationForm,
-      Map<Predicate<ValidationForm>, BiConsumer<ValidationForm, StringBuilder>> validationMap) {
-    StringBuilder errorBuilder = new StringBuilder();
+  private static boolean validateForm(ValidationDTO<User> validationDTO,
+      Map<Predicate<UserFormDTO>, Consumer<ValidationDTO<User>>> validationMap) {
 
     validationMap.forEach((predicate, consumer) -> {
-      if (!predicate.test(validationForm)) {
-        consumer.accept(validationForm, errorBuilder);
+      if (!predicate.test(validationDTO.getUserFormDTO())) {
+        consumer.accept(validationDTO);
       }
     });
 
-    return getErrorString(validationForm, errorBuilder);
+    return getErrorString(validationDTO);
   }
 
 
@@ -118,16 +118,12 @@ public class ValidationUtils {
     return nickName != null && nickName.trim().matches(NICKNAME_REGEX);
   }
 
-  public static String getErrorString(ValidationForm validationForm,
-      StringBuilder errorBuilder) {
-    String error = errorBuilder.toString().trim();
-
-    if (!error.isEmpty()) {
-      validationForm.setPassword("");
-      validationForm.setRepeatPassword("");
+  public static <V> boolean getErrorString(ValidationDTO<V> validationDTO) {
+    if (validationDTO.isErrorExists()) {
+      validationDTO.getUserFormDTO().setPassword("");
+      validationDTO.getUserFormDTO().setRepeatPassword("");
     }
-
-    return error;
+    return validationDTO.isErrorExists();
   }
 
 
