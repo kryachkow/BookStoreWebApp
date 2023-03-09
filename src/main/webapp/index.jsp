@@ -22,7 +22,7 @@
     <p class="mb3">Menu</p>
     <div class="grid-row">
       <div class="grid-column span-half mb3">
-        <a class="link" href="hello-servlet" title="stylesheet">Catalog</a>
+        <a class="link" href="catalog" title="stylesheet">Catalog</a>
       </div>
       <div class="grid-column span-half mb3">
         <a class="link" href="signUp" title="stylesheet">SignUp</a>

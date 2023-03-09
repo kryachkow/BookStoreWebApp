@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 public class AvatarRepositoryImpl implements AvatarRepository {
 
   private static final String BASE_AVATAR_PATH = "img/baseAvatar.jpg";
-  private static final String CATALOG_PATH = ProjectPaths.CATALOG_PATH;
+  private static final String CATALOG_PATH = ProjectPaths.AVATAR_CATALOG_PATH;
   private static final String CATALOG_PATH_PART = "data:image/jpeg;base64,";
   private static final Logger LOGGER = LogManager.getLogger(AvatarRepositoryImpl.class.getName());
 

@@ -2,7 +2,6 @@ package com.task.bookstorewebbapp.service.validation;
 
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -20,14 +19,12 @@ import com.task.bookstorewebbapp.utils.PasswordUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.powermock.reflect.Whitebox;
@@ -35,7 +32,7 @@ import org.powermock.reflect.Whitebox;
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceTest {
 
-  private final static MockedStatic<DBUtils> dbUtilsMockedStatic = mockStatic(DBUtils.class);
+//  private final static MockedStatic<DBUtils> dbUtilsMockedStatic = mockStatic(DBUtils.class);
   @Mock
   private HttpServletRequest request;
   @Mock
@@ -49,10 +46,10 @@ class AuthenticationServiceTest {
       "Name", PasswordUtils.encodePassword("12345678"), true);
 
 
-  @BeforeAll
-  static void init() {
-    dbUtilsMockedStatic.when(DBUtils::getInstance).thenReturn(dbutils);
-  }
+//  @BeforeAll
+//  static void init() {
+//    dbUtilsMockedStatic.when(DBUtils::getInstance).thenReturn(dbutils);
+//  }
 
   @BeforeEach
   void setUp() throws DAOException {

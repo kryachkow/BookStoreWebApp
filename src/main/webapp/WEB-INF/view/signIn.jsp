@@ -1,5 +1,4 @@
 <%@include file="/WEB-INF/include/header.jspf" %>
-<%@ taglib prefix="m" uri="/WEB-INF/include/captchaTag.tld" %>
 <html>
 <head>
     <%@include file="/WEB-INF/include/head.jspf" %>

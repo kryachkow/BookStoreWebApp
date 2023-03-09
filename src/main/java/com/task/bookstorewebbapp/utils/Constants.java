@@ -16,5 +16,16 @@ public final class  Constants {
   public static final int MAX_FILE_SIZE = 1024 * 1024 * 10;
   public static final int MAX_REQUEST_SIZE = 1024 * 1024 * 100;
 
+  public static final String TITLE_SEARCH = "titleSearch";
+  public static final String CATEGORY_ID = "categoryId";
+  public static final String PUBLISHER_ID = "publisherId";
+  public static final String MINIMUM_PRICE = "minPrice";
+  public static final String MAXIMUM_PRICE = "maxPrice";
+  public static final String SORTING = "sorting";
+  public static final String INVERTED = "inverted";
+  public static final String PAGE_NUMBER = "pageNumber";
+  public static final String PAGE_SIZE = "pageSize";
+
+
   private Constants(){}
 }
