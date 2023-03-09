@@ -1,6 +1,6 @@
 package com.task.bookstorewebbapp.model;
 
-import com.task.bookstorewebbapp.entity.UserEntity;
+import com.task.bookstorewebbapp.db.entity.UserEntity;
 import java.util.Objects;
 
 public class User {
@@ -9,21 +9,23 @@ public class User {
   private String email;
   private String name;
   private String surname;
-  private String nickName;
+  private String nickname;
   private boolean mailingSubscription;
 
-  public static User toModel(UserEntity entity){
+  private String avatarSource;
+
+  public User() {
+  }
+
+  public static User toModel(UserEntity entity) {
     User user = new User();
     user.setId(entity.getId());
-    user.setNickName(entity.getNickName());
+    user.setNickname(entity.getNickname());
     user.setName(entity.getName());
     user.setSurname(entity.getSurname());
     user.setEmail(entity.getEmail());
     user.setMailingSubscription(entity.isMailingSubscription());
     return user;
-  }
-
-  public User() {
   }
 
 
@@ -59,12 +61,12 @@ public class User {
     this.surname = surname;
   }
 
-  public String getNickName() {
-    return nickName;
+  public String getNickname() {
+    return nickname;
   }
 
-  public void setNickName(String nickName) {
-    this.nickName = nickName;
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
   }
 
   public boolean isMailingSubscription() {
@@ -73,6 +75,14 @@ public class User {
 
   public void setMailingSubscription(boolean mailingSubscription) {
     this.mailingSubscription = mailingSubscription;
+  }
+
+  public String getAvatarSource() {
+    return avatarSource;
+  }
+
+  public void setAvatarSource(String avatarSource) {
+    this.avatarSource = avatarSource;
   }
 
   @Override
@@ -86,12 +96,12 @@ public class User {
     User user = (User) o;
     return getId() == user.getId() && isMailingSubscription() == user.isMailingSubscription()
         && getEmail().equals(user.getEmail()) && getName().equals(user.getName())
-        && getSurname().equals(user.getSurname()) && getNickName().equals(user.getNickName());
+        && getSurname().equals(user.getSurname()) && getNickname().equals(user.getNickname());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getId(), getEmail(), getName(), getSurname(), getNickName(),
+    return Objects.hash(getId(), getEmail(), getName(), getSurname(), getNickname(),
         isMailingSubscription());
   }
 
@@ -102,8 +112,10 @@ public class User {
         ", email='" + email + '\'' +
         ", name='" + name + '\'' +
         ", surname='" + surname + '\'' +
-        ", nickName='" + nickName + '\'' +
+        ", nickName='" + nickname + '\'' +
         ", mailingSubscription=" + mailingSubscription +
         '}';
   }
+
+
 }

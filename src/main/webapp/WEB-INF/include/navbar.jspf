@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="template/carta/dist/css/production.css">
+<%@ taglib prefix="a" uri="/WEB-INF/include/avatarTag.tld" %>
+
+
+<div class="top-nav">
+    <a:avatar>
+    </a:avatar>
+</div>

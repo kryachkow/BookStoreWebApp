@@ -9,41 +9,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="Redurant class removed, minor style fixes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/CaptchaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/ValidationServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/BookStoreWebbApp_war_exploded.xml" afterDir="false" />
+    <list default="true" id="5c03cdd5-e483-4bfc-a090-5d6f1d9365b9" name="Changes" comment="Project changes&#10;&#10;Refactored ValidationService with implementations &#10;Created ValidationDTO for storing needed objects through validation&#10;Password codec added&#10;Constatns interface -&gt; Final class&#10;Other minor changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/impl/BookDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/impl/CategoryDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/dao/impl/PublisherDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/entity/BookEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/entity/CategoryEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/db/entity/PublisherEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/CatalogFilterDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/model/PaginationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/catalog/CatalogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/catalog/impl/CatalogRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/catalog/CatalogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/catalog/impl/CatalogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/CatalogServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/catalog.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/catalog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/repository/catalog/impl/CatalogRepositoryImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/catalog/impl/CatalogServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/ContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryCookieImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositoryFieldImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/captcha/CaptchaRepositorySessionImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/CaptchaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/captcha/CaptchaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/service/user/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/servlet/SingUpServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ValidationUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/utils/ValidationUtilsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/impl/AvatarRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/repository/avatar/impl/AvatarRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ProjectPaths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/bookstorewebbapp/utils/ProjectPaths.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signIn.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/signIn.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/AuthenticationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/task/bookstorewebbapp/service/validation/AuthenticationServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="Jsp File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -55,6 +72,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2LPMDaQLcgWwBi8np9igg3m0PHm" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -70,22 +90,28 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Колесников Примеры/Online-Store-master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Documents/BookStoreWebbApp/src/main/java/com/task/bookstorewebbapp/db/dao&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF" />
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\java\com\task\bookstorewebbapp\db\dao" />
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\java\com\task\bookstorewebbapp\repository\captcha" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\js" />
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\img" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp\WEB-INF\view" />
       <recent name="C:\Users\Admin\Documents\BookStoreWebbApp\src\main\webapp" />
     </key>
@@ -93,67 +119,83 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.task.bookstorewebbapp.service.catalog.impl" />
+      <recent name="com.task.bookstorewebbapp.repository.catalog.impl" />
       <recent name="com.task.bookstorewebbapp.service.validation" />
       <recent name="com.task.bookstorewebbapp.utils" />
       <recent name="com.task.bookstorewebbapp.servlet" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ValidationServiceImplTest">
-    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.utils.main" />
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.20">
+    <configuration name="CatalogRepositoryImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BookStoreWebbApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.task.bookstorewebbapp.utils.*" />
+          <option name="PATTERN" value="com.task.bookstorewebbapp.repository.catalog.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.repository.catalog.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.repository.catalog.impl.CatalogRepositoryImplTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidationServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CatalogServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BookStoreWebbApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.*" />
+          <option name="PATTERN" value="com.task.bookstorewebbapp.service.catalog.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.service.catalog.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.service.catalog.impl.CatalogServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SignUpValidationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BookStoreWebbApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.task.bookstorewebbapp.service.validation.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.service.validation" />
-      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.service.validation.ValidationServiceImplTest" />
+      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.service.validation.SignUpValidationServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidationUtilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="com.task.bookstorewebbapp in BookStoreWebbApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BookStoreWebbApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.task.bookstorewebbapp.utils.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.utils.ValidationUtilsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ValidationUtilsTest.validateCredentialExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BookStoreWebbApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.task.bookstorewebbapp.utils.*" />
+          <option name="PATTERN" value="com.task.bookstorewebbapp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.task.bookstorewebbapp.utils.ValidationUtilsTest" />
-      <option name="METHOD_NAME" value="validateCredentialExist(com.task.bookstorewebbapp.model.RegistrationForm,java.lang.String,com.task.bookstorewebbapp.model.RegistrationForm)" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.task.bookstorewebbapp.service in BookStoreWebbApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BookStoreWebbApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.task.bookstorewebbapp.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.task.bookstorewebbapp.service" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,6 +219,21 @@
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="53143" />
       </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -216,10 +273,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ValidationServiceImplTest" />
-        <item itemvalue="JUnit.ValidationUtilsTest" />
-        <item itemvalue="JUnit.ValidationUtilsTest.validateCredentialExist" />
-        <item itemvalue="Application.main" />
+        <item itemvalue="JUnit.com.task.bookstorewebbapp in BookStoreWebbApp" />
+        <item itemvalue="JUnit.com.task.bookstorewebbapp.service in BookStoreWebbApp" />
+        <item itemvalue="JUnit.CatalogServiceImplTest" />
+        <item itemvalue="JUnit.CatalogRepositoryImplTest" />
+        <item itemvalue="JUnit.SignUpValidationServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +301,50 @@
       <workItem from="1676096969047" duration="8460000" />
       <workItem from="1676370269408" duration="122000" />
       <workItem from="1676459598888" duration="6404000" />
+      <workItem from="1677161068752" duration="3222000" />
+      <workItem from="1677164924169" duration="2185000" />
+      <workItem from="1677243600530" duration="3372000" />
+      <workItem from="1677327069212" duration="12814000" />
+      <workItem from="1677402802334" duration="22000" />
+      <workItem from="1677408420929" duration="5406000" />
+      <workItem from="1677496900574" duration="6375000" />
+      <workItem from="1677582533714" duration="5445000" />
+      <workItem from="1677662903078" duration="9448000" />
+      <workItem from="1677742970415" duration="6566000" />
+      <workItem from="1677828363246" duration="1236000" />
+      <workItem from="1677830275787" duration="2287000" />
+      <workItem from="1678094367307" duration="7276000" />
+      <workItem from="1678118625866" duration="1507000" />
+      <workItem from="1678174820565" duration="4661000" />
+      <workItem from="1678186837304" duration="5095000" />
+      <workItem from="1678260764765" duration="5491000" />
+      <workItem from="1678266541341" duration="1347000" />
+      <workItem from="1678272421811" duration="4200000" />
+      <workItem from="1678280720151" duration="6479000" />
+      <workItem from="1678344606889" duration="3530000" />
     </task>
+    <task id="LOCAL-00001" summary="Task 12 &#10;&#10;part1 database created, attaching db through connection pool configuration in environment context, implemented DBUtils class for obtaining connections from database UserRepo was remade to UserDAO implemented method needed for functionality, UserService updated.&#10;&#10;part2 signIn.jsp created with servlet needed, authentication implemented though ValidationService interface as AuthenticationService, RegistrationForm was refactored to ValidationForm for code reusability, custom tag for signIn/avatar was implemented as AvatarTag class.&#10;&#10;part3 singUp.jsp as SignUpServlet were refactored to obtain .jgp files as avatars, AvatarRepository created to save and retrieve(as Base64 string) from disk folder, User class was expanded with avatarSource field for storing avatar in user session.  &#10;&#10;additional: test for AuthenticationService, minor unmentioned refactoring">
+      <created>1677414472160</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677414472160</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Minor code cleanup">
+      <created>1677414930794</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677414930794</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Project changes&#10;&#10;Refactored ValidationService with implementations &#10;Created ValidationDTO for storing needed objects through validation&#10;Password codec added&#10;Constatns interface -&gt; Final class&#10;Other minor changes">
+      <created>1677830831440</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677830831440</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,10 +355,34 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="task12" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task 12 &#10;&#10;part1 database created, attaching db through connection pool configuration in environment context, implemented DBUtils class for obtaining connections from database UserRepo was remade to UserDAO implemented method needed for functionality, UserService updated.&#10;&#10;part2 signIn.jsp created with servlet needed, authentication implemented though ValidationService interface as AuthenticationService, RegistrationForm was refactored to ValidationForm for code reusability, custom tag for signIn/avatar was implemented as AvatarTag class.&#10;&#10;part3 singUp.jsp as SignUpServlet were refactored to obtain .jgp files as avatars, AvatarRepository created to save and retrieve(as Base64 string) from disk folder, User class was expanded with avatarSource field for storing avatar in user session.  &#10;&#10;additional: test for AuthenticationService, minor unmentioned refactoring" />
+    <MESSAGE value="Minor code cleanup" />
+    <MESSAGE value="Project changes&#10;&#10;Refactored ValidationService with implementations &#10;Created ValidationDTO for storing needed objects through validation&#10;Password codec added&#10;Constatns interface -&gt; Final class&#10;Other minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project changes&#10;&#10;Refactored ValidationService with implementations &#10;Created ValidationDTO for storing needed objects through validation&#10;Password codec added&#10;Constatns interface -&gt; Final class&#10;Other minor changes" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BookStoreWebbApp$com_task_bookstorewebbapp_in_BookStoreWebbApp.ic" NAME="com.task.bookstorewebbapp in BookStoreWebbApp Coverage Results" MODIFIED="1678194072090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.task.bookstorewebbapp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStoreWebbApp$Tomcat_10_0_20.ic" NAME="Tomcat 10.0.20 Coverage Results" MODIFIED="1678188387989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

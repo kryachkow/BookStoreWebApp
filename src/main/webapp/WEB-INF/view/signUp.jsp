@@ -15,7 +15,7 @@
 
 <main>
     <div class="bg--light-gray rounded p1 m2 border--full align--center">
-        <form id="form" method="post" action="signUp">
+        <form id="form" method="post" action="signUp" enctype="multipart/form-data">
 
             <table class="table container--lg pt1 pb2">
                 <tr>
@@ -94,7 +94,12 @@
             </table>
             <div class="inline-block">
                 <label class="h3 text--white mb1 p1 bold" for="mailingSubscription">Mailing Subscription</label>
-                <input class="ui-icon-circle-check " type="checkbox" name="mailingSubscription" id = "mailingSubscription">
+                <input class="ui-icon-circle-check " type="checkbox" name="mailingSubscription" id = "mailingSubscription" value = "true">
+            </div>
+
+            <div class="inline-block">
+                <label class="h3 text--white mb1 p1 bold" for="avatar">Upload JPG avatar!</label>
+                <input class="btb btn--sm " type="file" name="avatar" id = "avatar" accept="image/*">
             </div>
 
             <div class="centered p1">
