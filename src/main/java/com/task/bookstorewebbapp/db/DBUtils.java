@@ -1,5 +1,6 @@
 package com.task.bookstorewebbapp.db;
 
+import com.task.bookstorewebbapp.db.exception.DataSourceException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.naming.Context;
@@ -28,7 +29,7 @@ public class DBUtils {
       ds = (DataSource) envContext.lookup(DATA_SOURCE_PATH);
     } catch (NamingException ex) {
       LOGGER.error(DATA_SOURCE_EXCEPTION_MESSAGE, ex);
-      throw new IllegalStateException(DATA_SOURCE_EXCEPTION_MESSAGE, ex);
+      throw new DataSourceException(DATA_SOURCE_EXCEPTION_MESSAGE, ex);
     }
   }
 
@@ -46,7 +47,7 @@ public class DBUtils {
       con = ds.getConnection();
     } catch (SQLException ex) {
       LOGGER.error(CONNECTION_EXCEPTION_MESSAGE, ex);
-      throw new IllegalStateException(CONNECTION_EXCEPTION_MESSAGE, ex);
+      throw new DataSourceException(CONNECTION_EXCEPTION_MESSAGE, ex);
     }
     return con;
   }

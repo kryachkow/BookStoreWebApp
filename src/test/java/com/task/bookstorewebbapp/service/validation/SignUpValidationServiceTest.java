@@ -1,12 +1,9 @@
 package com.task.bookstorewebbapp.service.validation;
 
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
-import com.task.bookstorewebbapp.db.DBUtils;
-import com.task.bookstorewebbapp.db.entity.UserEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
+import com.task.bookstorewebbapp.db.exception.DataSourceException;
 import com.task.bookstorewebbapp.model.User;
 import com.task.bookstorewebbapp.model.UserFormDTO;
 import com.task.bookstorewebbapp.model.ValidationDTO;
@@ -14,6 +11,7 @@ import com.task.bookstorewebbapp.service.captcha.impl.CaptchaServiceImpl;
 import com.task.bookstorewebbapp.service.user.impl.UserServiceImpl;
 import com.task.bookstorewebbapp.service.validation.impl.SignUpValidationService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,40 +21,35 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.powermock.reflect.Whitebox;
+import utils.DBUtilsStaticMock;
 
 @ExtendWith(MockitoExtension.class)
 class SignUpValidationServiceTest {
 
-  private static final MockedStatic<DBUtils> dbUtilsMockedStatic = mockStatic(DBUtils.class);
   @Mock
   private static HttpServletRequest request;
   @Mock
   private static UserServiceImpl userService;
   @Mock
   private static CaptchaServiceImpl captchaService;
-
-  @Mock
-  private static DBUtils dbutils;
-
   private final SignUpValidationService validationService = new SignUpValidationService();
 
   @BeforeAll
   static void init() {
-    dbUtilsMockedStatic.when(DBUtils::getInstance).thenReturn(dbutils);
+    DBUtilsStaticMock.makeDBMock();
   }
 
   @BeforeEach
-  void setUp() throws DAOException {
+  void setUp() throws DataSourceException {
     Whitebox.setInternalState(validationService, "captchaService", captchaService);
     Whitebox.setInternalState(validationService, "userService", userService);
-    when(userService.getUserByEmail(Mockito.anyString())).thenReturn(null);
-    lenient().when(userService.getUserByEmail("example@email.com")).thenReturn(new UserEntity());
-    when(userService.getUserByNickname(Mockito.anyString())).thenReturn(null);
-    lenient().when(userService.getUserByNickname("Nick1")).thenReturn(new UserEntity());
+    when(userService.getUserByEmail(Mockito.anyString())).thenReturn(Optional.empty());
+    lenient().when(userService.getUserByEmail("example@email.com")).thenReturn(Optional.of(new User()));
+    when(userService.getUserByNickname(Mockito.anyString())).thenReturn(Optional.empty());
+    lenient().when(userService.getUserByNickname("Nick1")).thenReturn(Optional.of(new User()));
     lenient().when(captchaService.validateCaptcha(request)).thenReturn("");
   }
 

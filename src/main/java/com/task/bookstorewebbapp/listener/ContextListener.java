@@ -25,7 +25,6 @@ public class ContextListener implements ServletContextListener {
     ServletContext context = sce.getServletContext();
     String log4jConfigFile = context.getInitParameter(LOG4J_LOCATION);
     String fullPath = context.getRealPath("") + log4jConfigFile;
-    System.out.println(fullPath);
     PropertyConfigurator.configure(fullPath);
     captchaRepository = new CaptchaRepositoryCookieImpl();
     try {

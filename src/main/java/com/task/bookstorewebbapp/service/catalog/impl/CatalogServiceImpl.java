@@ -3,13 +3,13 @@ package com.task.bookstorewebbapp.service.catalog.impl;
 import com.task.bookstorewebbapp.db.entity.BookEntity;
 import com.task.bookstorewebbapp.db.entity.CategoryEntity;
 import com.task.bookstorewebbapp.db.entity.PublisherEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
 import com.task.bookstorewebbapp.model.CatalogFilterDTO;
 import com.task.bookstorewebbapp.model.PaginationDTO;
 import com.task.bookstorewebbapp.repository.catalog.CatalogRepository;
 import com.task.bookstorewebbapp.service.catalog.CatalogService;
 import com.task.bookstorewebbapp.utils.Constants;
 import jakarta.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CatalogServiceImpl implements CatalogService {
@@ -21,7 +21,7 @@ public class CatalogServiceImpl implements CatalogService {
   private final List<CategoryEntity> categoryEntities;
 
 
-  public CatalogServiceImpl(CatalogRepository catalogRepository) throws DAOException {
+  public CatalogServiceImpl(CatalogRepository catalogRepository) throws SQLException {
     this.catalogRepository = catalogRepository;
     publisherEntities = this.catalogRepository.getPublishers();
     categoryEntities = this.catalogRepository.getCategories();
@@ -29,7 +29,7 @@ public class CatalogServiceImpl implements CatalogService {
 
   @Override
   public List<BookEntity> getBooks(CatalogFilterDTO catalogFilterDTO, PaginationDTO paginationDTO)
-      throws DAOException {
+      throws SQLException {
     List<BookEntity> bookEntities = catalogRepository.getBooksByFilter(catalogFilterDTO);
     int lastIndex = getLastIndex(paginationDTO, bookEntities.size());
     paginationDTO.setPreviousPage(paginationDTO.getPageNumber() == 1

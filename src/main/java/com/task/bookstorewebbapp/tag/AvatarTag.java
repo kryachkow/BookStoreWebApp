@@ -10,12 +10,18 @@ import java.io.IOException;
 public class AvatarTag extends TagSupport {
 
   private static final String GUEST_NAV = "<a class=\"h3 mb1 p1 bold float--right pr4 inline-block\" href=\"signIn\">SignIn</a>\n";
-  private static final String USER_NAV = "<div class=\"top-nav\">\n"
-      + "    <div class=\"float--right pr4 pt2\">\n"
-      + "        <h3 class=\"inline-block\">%s</h1>\n"
-      + "        <img class=\"inline-block\" src=\"%s\" alt=\"%s\" style=\"width:50px;height:50px;\">\n"
-      + "    </div>\n"
-      + "</div>";
+  private static final String USER_NAV = """
+      <div class="top-nav">
+          <div class="float--right pr4 pt2">
+              <h3 class="inline-block">%s</h1>
+              <img class="inline-block" src="%s" alt="%s" style="width:50px;height:50px;">
+              <a class="h3 mb1 p1 bold float--right pr4 inline-block" href="cart">Cart</a>
+          </div>
+      </div>""";
+
+  private static final String CART_NAV = """
+      <a class="h3 mb1 p1 bold float--right pr4 inline-block" href="cart">Cart</a>
+            """;
 
 
   @Override
@@ -38,7 +44,7 @@ public class AvatarTag extends TagSupport {
 
 
   private int generateGuestHeader(JspWriter out) throws IOException {
-    out.print(GUEST_NAV);
+    out.print(GUEST_NAV + CART_NAV);
     return SKIP_BODY;
   }
 }

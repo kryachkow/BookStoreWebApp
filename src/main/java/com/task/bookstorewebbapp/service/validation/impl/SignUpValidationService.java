@@ -33,12 +33,12 @@ public class SignUpValidationService implements ValidationService<User> {
 
     credentialsValidationMap.put(
         (validationDTO -> userService.getUserByEmail((validationDTO.getUserFormDTO().getEmail()))
-            == null), (validationDTO -> {
+            .isEmpty()), (validationDTO -> {
           validationDTO.getUserFormDTO().setEmail("");
           validationDTO.getErrorMessage().append(Constants.EMAIL_EXISTS).append(" ");
         }));
     credentialsValidationMap.put((validationDTO ->
-            userService.getUserByNickname((validationDTO.getUserFormDTO().getNickname())) == null),
+            userService.getUserByNickname((validationDTO.getUserFormDTO().getNickname())).isEmpty()),
         (validationDTO -> {
           validationDTO.getUserFormDTO().setNickname("");
           validationDTO.getErrorMessage().append(Constants.NICKNAME_EXISTS).append(" ");

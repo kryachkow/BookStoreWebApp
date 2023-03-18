@@ -2,12 +2,11 @@ package com.task.bookstorewebbapp.service.catalog.impl;
 
 import static org.mockito.Mockito.when;
 
-import com.task.bookstorewebbapp.db.DBUtils;
 import com.task.bookstorewebbapp.db.entity.BookEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
 import com.task.bookstorewebbapp.model.CatalogFilterDTO;
 import com.task.bookstorewebbapp.model.PaginationDTO;
 import com.task.bookstorewebbapp.repository.catalog.impl.CatalogRepositoryImpl;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,14 +21,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import utils.DBUtilsStaticMock;
 
 @ExtendWith(MockitoExtension.class)
 class CatalogServiceImplTest {
 
-//  private final static MockedStatic<DBUtils> dbUtilsMockedStatic = mockStatic(DBUtils.class);
   private final static List<BookEntity> books = new ArrayList<>();
-  @Mock
-  private static DBUtils dbutils;
   @Mock
   private static CatalogRepositoryImpl catalogRepository;
 
@@ -37,7 +34,7 @@ class CatalogServiceImplTest {
 
   @BeforeAll
   static void init() {
-//    dbUtilsMockedStatic.when(DBUtils::getInstance).thenReturn(dbutils).thenReturn(dbutils).thenReturn(dbutils);
+    DBUtilsStaticMock.makeDBMock();
     for(int i = 1; i <= 11; i++) {
       BookEntity bookEntity = new BookEntity();
       bookEntity.setId(i);
@@ -46,7 +43,7 @@ class CatalogServiceImplTest {
   }
 
   @BeforeEach
-  void setUp() throws DAOException {
+  void setUp() throws SQLException {
     when(catalogRepository.getPublishers()).thenReturn(null);
     when(catalogRepository.getCategories()).thenReturn(null);
     when(catalogRepository.getBooksByFilter(Mockito.any())).thenReturn(books);
@@ -57,9 +54,8 @@ class CatalogServiceImplTest {
   @ParameterizedTest
   @MethodSource("getPaginationArguments")
   void getBooks(PaginationDTO paginationDTO, List<Long> retIdList, int lastPage, int previousPage, int nextPage)
-      throws DAOException {
+      throws SQLException {
     List<BookEntity> entities = catalogService.getBooks(new CatalogFilterDTO(), paginationDTO);
-    System.out.println(entities);
     Assertions.assertEquals(retIdList, entities.stream().map(BookEntity::getId).collect(Collectors.toList()));
     Assertions.assertEquals(retIdList.size(), entities.size());
     Assertions.assertEquals(lastPage, paginationDTO.getLastPage());

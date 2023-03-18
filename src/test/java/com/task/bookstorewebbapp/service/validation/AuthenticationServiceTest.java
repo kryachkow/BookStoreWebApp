@@ -6,9 +6,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.task.bookstorewebbapp.db.DBUtils;
 import com.task.bookstorewebbapp.db.entity.UserEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
+import com.task.bookstorewebbapp.db.exception.DataSourceException;
 import com.task.bookstorewebbapp.model.User;
 import com.task.bookstorewebbapp.model.UserFormDTO;
 import com.task.bookstorewebbapp.model.ValidationDTO;
@@ -17,8 +16,10 @@ import com.task.bookstorewebbapp.service.user.impl.UserServiceImpl;
 import com.task.bookstorewebbapp.service.validation.impl.AuthenticationService;
 import com.task.bookstorewebbapp.utils.PasswordUtils;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,6 +29,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.powermock.reflect.Whitebox;
+import utils.DBUtilsStaticMock;
 
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceTest {
@@ -39,22 +41,21 @@ class AuthenticationServiceTest {
   private static UserServiceImpl userService;
   @Mock
   private static AvatarRepositoryImpl avatarRepository;
-  @Mock
-  private static DBUtils dbutils;
-  private static final AuthenticationService validationService = new AuthenticationService();
+  private final AuthenticationService validationService = new AuthenticationService();
   private final UserEntity testEntity = new UserEntity(1, "example@email.com", "Name", "Name",
       "Name", PasswordUtils.encodePassword("12345678"), true);
 
 
-//  @BeforeAll
-//  static void init() {
-//    dbUtilsMockedStatic.when(DBUtils::getInstance).thenReturn(dbutils);
-//  }
+  @BeforeAll
+  static void init() {
+    DBUtilsStaticMock.makeDBMock();
+  }
 
   @BeforeEach
-  void setUp() throws DAOException {
-    when(userService.getUserByEmail(Mockito.anyString())).thenReturn(null);
-    lenient().when(userService.getUserByEmail("example@email.com")).thenReturn(testEntity);
+  void setUp() throws DataSourceException {
+    when(userService.authenticateUser(Mockito.anyString(), Mockito.anyString())).thenReturn(Optional.empty());
+    lenient().when(userService.authenticateUser("example@email.com", "12345678")).thenReturn(
+        Optional.of(User.toModel(testEntity)));
     lenient().when(avatarRepository.getAvatar(Mockito.anyLong())).thenReturn(null);
     Whitebox.setInternalState(validationService, "userService", userService);
     Whitebox.setInternalState(validationService, "avatarRepository", avatarRepository);
@@ -85,7 +86,8 @@ class AuthenticationServiceTest {
             true),
         Arguments.of(new UserFormDTO("exam1ple@email.com", "", "", "", "31231231231", "", false),
             "Wrong credentials", new UserFormDTO("exam1ple@email.com", "", "", "", "", "", false),
-            0, true), Arguments.of(new UserFormDTO("12412exa3123.com", "", "", "", "", "", false),
+            0, true),
+        Arguments.of(new UserFormDTO("12412exa3123.com", "", "", "", "", "", false),
             "Email isn`t valid Password isn`t valid",
             new UserFormDTO("", "", "", "", "", "", false), 0, true)
 
