@@ -1,9 +1,8 @@
 package com.task.bookstorewebbapp.service.validation;
 
-import com.task.bookstorewebbapp.model.RegistrationForm;
-import jakarta.servlet.http.HttpServletRequest;
+import com.task.bookstorewebbapp.model.ValidationDTO;
 
-public interface ValidationService {
+public interface ValidationService <V> {
 
-  String validate(HttpServletRequest request, RegistrationForm registrationForm);
+   boolean checkErrors(ValidationDTO<V> validationDTO);
 }

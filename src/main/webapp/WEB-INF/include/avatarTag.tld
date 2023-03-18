@@ -1,0 +1,9 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>Avatar tag</short-name>
+    <tag>
+        <name>avatar</name>
+        <tag-class>com.task.bookstorewebbapp.tag.AvatarTag</tag-class>
+    </tag>
+</taglib>

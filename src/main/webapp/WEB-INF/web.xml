@@ -4,6 +4,14 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
   version="4.0">
 
+  <resource-env-ref>
+    <resource-env-ref-name>jdbc/db</resource-env-ref-name>
+    <resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
+  </resource-env-ref>
+  <context-param>
+    <param-name>log4j-config-location</param-name>
+    <param-value>WEB-INF/properties/log4j.properties</param-value>
+  </context-param>
   <error-page>
     <error-code>404</error-code>
     <location>/error404.jsp</location>
