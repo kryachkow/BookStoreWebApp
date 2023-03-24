@@ -1,0 +1,9 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>Locale tag</short-name>
+    <tag>
+        <name>locale</name>
+        <tag-class>com.task.bookstorewebbapp.tag.LocaleTag</tag-class>
+    </tag>
+</taglib>
