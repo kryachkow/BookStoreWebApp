@@ -1,20 +1,18 @@
 package com.task.bookstorewebbapp.servlet;
 
-import com.task.bookstorewebbapp.model.ValidationDTO;
-import com.task.bookstorewebbapp.utils.Constants;
-import com.task.bookstorewebbapp.utils.ProjectPaths;
-import com.task.bookstorewebbapp.db.entity.UserEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
 import com.task.bookstorewebbapp.model.User;
 import com.task.bookstorewebbapp.model.UserFormDTO;
+import com.task.bookstorewebbapp.model.ValidationDTO;
 import com.task.bookstorewebbapp.repository.avatar.AvatarRepository;
 import com.task.bookstorewebbapp.repository.avatar.impl.AvatarRepositoryImpl;
 import com.task.bookstorewebbapp.service.captcha.CaptchaService;
 import com.task.bookstorewebbapp.service.captcha.impl.CaptchaServiceImpl;
 import com.task.bookstorewebbapp.service.user.UserService;
 import com.task.bookstorewebbapp.service.user.impl.UserServiceImpl;
-import com.task.bookstorewebbapp.service.validation.impl.SignUpValidationService;
 import com.task.bookstorewebbapp.service.validation.ValidationService;
+import com.task.bookstorewebbapp.service.validation.impl.SignUpValidationService;
+import com.task.bookstorewebbapp.utils.Constants;
+import com.task.bookstorewebbapp.utils.ProjectPaths;
 import com.task.bookstorewebbapp.utils.ServletUtils;
 import com.task.bookstorewebbapp.utils.ValidationUtils;
 import jakarta.servlet.ServletException;
@@ -24,6 +22,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -63,15 +62,13 @@ public class SingUpServlet extends HttpServlet {
     ValidationDTO<User> validationDTO = new ValidationDTO<>(request, ValidationUtils.getValidationForm(request));
 
     if (!validationService.checkErrors(validationDTO)) {
-      UserEntity userEntity;
       try {
-        userEntity = getUserFromDataBase(validationDTO.getUserFormDTO());
-        User userModel = User.toModel(userEntity);
-        avatarRepository.addAvatarToCatalog(request.getPart(AVATAR_PART), userEntity.getId());
+        User userModel = getUserFromDataBase(validationDTO.getUserFormDTO());
+        avatarRepository.addAvatarToCatalog(request.getPart(AVATAR_PART), userModel.getId());
         userModel.setAvatarSource(avatarRepository.getAvatar(userModel.getId()));
         request.getSession().setAttribute(Constants.USER_ATTRIBUTE, userModel);
         response.sendRedirect(ProjectPaths.INDEX_JSP);
-      } catch (DAOException | ServletException e) {
+      } catch (SQLException | ServletException e) {
         LOGGER.error(Constants.DATABASE_ERROR, e);
         sendError(request, response, validationDTO.getUserFormDTO(), Constants.DATABASE_ERROR);
       }
@@ -80,14 +77,14 @@ public class SingUpServlet extends HttpServlet {
     sendError(request, response, validationDTO.getUserFormDTO(), validationDTO.getErrorMessage().toString().trim());
   }
 
-  private UserEntity getUserFromDataBase(UserFormDTO userFormDTO) throws DAOException {
+  private User getUserFromDataBase(UserFormDTO userFormDTO) throws SQLException {
     return userService.addUser(
         userFormDTO.getEmail(),
         userFormDTO.getName(),
         userFormDTO.getSurname(),
         userFormDTO.getNickname(),
         userFormDTO.getPassword(),
-        userFormDTO.isMailingSubscription());
+        userFormDTO.isMailingSubscription()).orElseThrow(SQLException::new);
   }
 
   private void sendError(HttpServletRequest req, HttpServletResponse resp,

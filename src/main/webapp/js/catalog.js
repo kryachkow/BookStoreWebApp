@@ -14,6 +14,10 @@ $(document).ready(function () {
 
   }
 
+  $('.addToCartForm').submit(function () {
+    redeployParameters(this, [])
+  })
+
   $('.pageForm').submit(function () {
     redeployParameters(this, ['pageNumber'])
   })

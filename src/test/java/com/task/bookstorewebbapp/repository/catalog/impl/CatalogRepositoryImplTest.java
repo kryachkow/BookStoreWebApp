@@ -2,13 +2,12 @@ package com.task.bookstorewebbapp.repository.catalog.impl;
 
 import static org.mockito.Mockito.when;
 
-import com.task.bookstorewebbapp.db.DBUtils;
 import com.task.bookstorewebbapp.db.dao.impl.BookDAO;
 import com.task.bookstorewebbapp.db.entity.BookEntity;
 import com.task.bookstorewebbapp.db.entity.CategoryEntity;
 import com.task.bookstorewebbapp.db.entity.PublisherEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
 import com.task.bookstorewebbapp.model.CatalogFilterDTO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -22,23 +21,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.powermock.reflect.Whitebox;
+import utils.DBUtilsStaticMock;
 
 @ExtendWith(MockitoExtension.class)
 class CatalogRepositoryImplTest {
 
-//  private final static MockedStatic<DBUtils> dbUtilsMockedStatic = mockStatic(DBUtils.class);
   private final static List<BookEntity> books = new ArrayList<>();
   @Mock
-  private static DBUtils dbutils;
-
-  @Mock
   private BookDAO bookDAO;
-
   private final CatalogRepositoryImpl catalogRepository = new CatalogRepositoryImpl();
 
   @BeforeAll
   static void init() {
-//    dbUtilsMockedStatic.when(DBUtils::getInstance).thenReturn(dbutils);
+    DBUtilsStaticMock.makeDBMock();
     books.add(new BookEntity(1, "A", "B", 23, 100,
         new PublisherEntity(1, "P"),
         new CategoryEntity(1, "C")));
@@ -54,7 +49,7 @@ class CatalogRepositoryImplTest {
   }
 
   @BeforeEach
-  void setUp() throws DAOException {
+  void setUp() throws SQLException {
     Whitebox.setInternalState(catalogRepository, "bookEntityDAO", bookDAO);
     when(bookDAO.getEntities()).thenReturn(books);
   }
@@ -62,13 +57,13 @@ class CatalogRepositoryImplTest {
   @ParameterizedTest
   @MethodSource("getTestArguments")
   void getBooksByFilter(CatalogFilterDTO catalogFilterDTO, int[] indexesArray)
-      throws DAOException {
+      throws SQLException {
     List<BookEntity> booksByFilter = catalogRepository.getBooksByFilter(catalogFilterDTO);
-    Assertions.assertEquals(indexesArray.length, booksByFilter.size());
     List<BookEntity> expectedResList = new ArrayList<>();
     for(int i : indexesArray){
       expectedResList.add(books.get(i));
     }
+    Assertions.assertEquals(indexesArray.length, booksByFilter.size());
     Assertions.assertEquals(expectedResList, booksByFilter);
   }
 

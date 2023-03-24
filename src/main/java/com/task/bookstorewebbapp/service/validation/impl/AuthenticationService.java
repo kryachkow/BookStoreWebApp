@@ -1,6 +1,5 @@
 package com.task.bookstorewebbapp.service.validation.impl;
 
-import com.task.bookstorewebbapp.db.entity.UserEntity;
 import com.task.bookstorewebbapp.model.User;
 import com.task.bookstorewebbapp.model.ValidationDTO;
 import com.task.bookstorewebbapp.repository.avatar.AvatarRepository;
@@ -8,7 +7,6 @@ import com.task.bookstorewebbapp.repository.avatar.impl.AvatarRepositoryImpl;
 import com.task.bookstorewebbapp.service.user.UserService;
 import com.task.bookstorewebbapp.service.user.impl.UserServiceImpl;
 import com.task.bookstorewebbapp.service.validation.ValidationService;
-import com.task.bookstorewebbapp.utils.PasswordUtils;
 import com.task.bookstorewebbapp.utils.ValidationUtils;
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -44,16 +42,17 @@ public class AuthenticationService implements ValidationService<User> {
 
 
   private boolean validateCredentials(ValidationDTO<User> validationDTO) {
-    UserEntity user = userService.getUserByEmail(validationDTO.getUserFormDTO().getEmail());
+    userService
+        .authenticateUser(validationDTO.getUserFormDTO().getEmail(),
+            validationDTO.getUserFormDTO().getPassword())
+        .ifPresentOrElse(
+            (user -> {
+              user.setAvatarSource(avatarRepository.getAvatar(user.getId()));
+              validationDTO.setReturnValue(user);
+            }),
+            () -> validationDTO.getErrorMessage().append(WRONG_CREDENTIALS_MESSAGE)
+        );
 
-    if (user != null && PasswordUtils.checkPassword(validationDTO.getUserFormDTO().getPassword(),
-        user.getPassword())) {
-      User userModel = User.toModel(user);
-      userModel.setAvatarSource(avatarRepository.getAvatar(user.getId()));
-      validationDTO.setReturnValue(userModel);
-    } else {
-      validationDTO.getErrorMessage().append(WRONG_CREDENTIALS_MESSAGE);
-    }
     return ValidationUtils.getErrorString(validationDTO);
   }
 }

@@ -61,3 +61,4 @@ public class AvatarRepositoryImpl implements AvatarRepository {
     return BASE_AVATAR_PATH;
   }
 }
+

@@ -120,110 +120,137 @@
             </ul>
 
         </form>
-
-    </div>
-    <div class="rounded">
-        <table class="container--lg pt1 pb1">
-            <thead>
-            <tr class="bg--dark-gray align--center pt3 pb3">
-                <th class="h3 text--white mb1 p1 bold align--center">Book Title</th>
-                <th class="h3 text--white mb1 p1 bold align--center">Author</th>
-                <th class="h3 text--white mb1 p1 bold align--center">Publisher</th>
-                <th class="h3 text--white mb1 p1 bold align--center">Category</th>
-                <th class="h3 text--white mb1 p1 bold align--center">Page Number</th>
-                <th class="h3 text--white mb1 p1 bold align--center">Price</th>
-                <th class="h3 text--white mb1 p1 bold align--center">Add To Cart</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <c:forEach items="${requestScope.books}" var="book">
-                <tr class="tab">
-                    <th class="align--center p1">${book.bookTitle}</th>
-                    <th class="align--center p1">${book.author}</th>
-                    <th class="align--center p1">${book.publisherEntity.name}</th>
-                    <th class="align--center p1">${book.categoryEntity.name}</th>
-                    <th class="align--center p1">${book.pageNumber}</th>
-                    <th class="align--center p1">${book.price}</th>
-                    <th class="align--center p1">
-                        <button class="btn btn--secondary">Add To Cart</button>
-                    </th>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
     </div>
 
+    <c:choose>
+        <c:when test="${requestScope.books.isEmpty()}">
+            <div class="align--center pt1 pb1">
+                <p class="h4 text--dark-gray bold">Sorry there is no books for your parameters!</p>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="rounded">
+                <table class="container--lg pt1 pb1">
+                    <thead>
+                    <tr class="bg--dark-gray align--center pt3 pb3">
+                        <th class="h3 text--white mb1 p1 bold align--center">Book Title</th>
+                        <th class="h3 text--white mb1 p1 bold align--center">Author</th>
+                        <th class="h3 text--white mb1 p1 bold align--center">Publisher</th>
+                        <th class="h3 text--white mb1 p1 bold align--center">Category</th>
+                        <th class="h3 text--white mb1 p1 bold align--center">Page Number</th>
+                        <th class="h3 text--white mb1 p1 bold align--center">Price</th>
+                        <th class="h3 text--white mb1 p1 bold align--center">Add To Cart</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach items="${requestScope.books}" var="book">
+                        <tr class="tab">
+                            <th class="align--center p1">${book.bookTitle}</th>
+                            <th class="align--center p1">${book.author}</th>
+                            <th class="align--center p1">${book.publisherEntity.name}</th>
+                            <th class="align--center p1">${book.categoryEntity.name}</th>
+                            <th class="align--center p1">${book.pageNumber}</th>
+                            <th class="align--center p1">${book.price}</th>
+                            
+                            </th>
+                            <th class="align--center p1">
+                                <form class="addToCartForm" action="addToCart" method="get">
+                                    <input type="hidden" name="bookId" value="${book.id}">
+                                    <label for="quantity"
+                                           class="inline-block">Quantity</label><input type="number"
+                                                                                       class="inline-block"
+                                                                                       id="quantity"
+                                                                                       name="quantity"
+                                                                                       required
+                                                                                       min="1"
+                                                                                       max="100">
+                                    <button type="submit" class="btn btn--secondary inline-block">
+                                        Add To Cart
+                                    </button>
+                                </form>
+                            </th>
 
 
-    <div class="container--lg pt1 pb1 centered">
-        <ul class="inline-block">
-            <li class="inline-block">
-                <form action="catalog" method="get" name="pageForm" class="pageForm">
-                    <input type="hidden" name="pageNumber" value="1">
-                    <div ${(requestScope.pagination.pageNumber <= 2) ? 'hidden' : ''} >
-                        <button type="submit" class="btn btn-primary mb-2">1</button>
-                    </div>
-                </form>
-            </li>
-
-            <li class="inline-block">
-                <div ${(requestScope.pagination.pageNumber <= 2 ) ? 'hidden' : ''}>
-                    <button class="btn btn-primary mb-2">...</button>
-                </div>
-            </li>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
 
 
-            <li class="inline-block">
+            <div class="container--lg pt1 pb1 centered">
+                <ul class="inline-block">
+                    <li class="inline-block">
+                        <form action="catalog" method="get" name="pageForm" class="pageForm">
+                            <input type="hidden" name="pageNumber" value="1">
+                            <div ${(requestScope.pagination.pageNumber <= 2) ? 'hidden' : ''} >
+                                <button type="submit" class="btn btn-primary mb-2">1</button>
+                            </div>
+                        </form>
+                    </li>
 
-                <form action="catalog" method="get" name="pageForm" class="pageForm">
-                    <input type="hidden" name="pageNumber"
-                           value="${requestScope.pagination.previousPage}">
-                    <div class="col-auto" ${(requestScope.pagination.pageNumber > 1) ? '' : 'hidden'}>
-                        <button type="submit"
-                                class="btn btn-primary mb-2">${requestScope.pagination.previousPage}</button>
-                    </div>
-                </form>
-
-            </li>
-
-            <li class="inline-block btn btn-primary mb-2">
-                <p><c:out value="${requestScope.pagination.pageNumber}"/></p>
-            </li>
-
-            <li class="inline-block">
-                <form action="catalog" method="get" name="pageForm" class="pageForm" >
-                    <input type="hidden" name="pageNumber"
-                           value="${requestScope.pagination.nextPage}">
-                    <div class="col-auto" ${requestScope.pagination.nextPage != -1 ? '' : 'hidden'}>
-                        <button type="submit"
-                                class="btn btn-primary mb-2">${requestScope.pagination.nextPage}</button>
-                    </div>
-                </form>
-            </li>
-
-            <li class="inline-block">
-                <div ${requestScope.pagination.lastPage == -1 ||
-                        requestScope.pagination.lastPage == requestScope.pagination.nextPage
-                        ? 'hidden' : ''}>
-                    <button class="btn btn-primary mb-2">...</button>
-                </div>
-            </li>
+                    <li class="inline-block">
+                        <div ${(requestScope.pagination.pageNumber <= 2 ) ? 'hidden' : ''}>
+                            <button class="btn btn-primary mb-2">...</button>
+                        </div>
+                    </li>
 
 
-            <li class="inline-block">
-                <form action="catalog" method="get" name="pageForm" class="pageForm">
-                    <input type="hidden" name="pageNumber"
-                           value="${requestScope.pagination.lastPage}">
-                    <div class="col-auto" ${requestScope.pagination.lastPage == -1 ||
-                            requestScope.pagination.lastPage == requestScope.pagination.nextPage ? 'hidden' : ''} >
-                        <button type="submit"
-                                class="btn btn-primary mb-2">${requestScope.pagination.lastPage}</button>
-                    </div>
-                </form>
-            </li>
-        </ul>
-    </div>
+                    <li class="inline-block">
+
+                        <form action="catalog" method="get" name="pageForm" class="pageForm">
+                            <input type="hidden" name="pageNumber"
+                                   value="${requestScope.pagination.previousPage}">
+                            <div class="col-auto" ${(requestScope.pagination.pageNumber > 1) ? '' : 'hidden'}>
+                                <button type="submit"
+                                        class="btn btn-primary mb-2">${requestScope.pagination.previousPage}</button>
+                            </div>
+                        </form>
+
+                    </li>
+
+                    <li class="inline-block btn btn-primary mb-2">
+                        <p><c:out value="${requestScope.pagination.pageNumber}"/></p>
+                    </li>
+
+                    <li class="inline-block">
+                        <form action="catalog" method="get" name="pageForm" class="pageForm">
+                            <input type="hidden" name="pageNumber"
+                                   value="${requestScope.pagination.nextPage}">
+                            <div class="col-auto" ${requestScope.pagination.nextPage != -1 ? '' : 'hidden'}>
+                                <button type="submit"
+                                        class="btn btn-primary mb-2">${requestScope.pagination.nextPage}</button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="inline-block">
+                        <div ${requestScope.pagination.lastPage == -1 ||
+                                requestScope.pagination.lastPage == requestScope.pagination.nextPage
+                                ? 'hidden' : ''}>
+                            <button class="btn btn-primary mb-2">...</button>
+                        </div>
+                    </li>
+
+
+                    <li class="inline-block">
+                        <form action="catalog" method="get" name="pageForm" class="pageForm">
+                            <input type="hidden" name="pageNumber"
+                                   value="${requestScope.pagination.lastPage}">
+                            <div class="col-auto" ${requestScope.pagination.lastPage == -1 ||
+                                    requestScope.pagination.lastPage == requestScope.pagination.nextPage ? 'hidden' : ''} >
+                                <button type="submit"
+                                        class="btn btn-primary mb-2">${requestScope.pagination.lastPage}</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </c:otherwise>
+    </c:choose>
+
+
     <script type="application/javascript"
             src="${pageContext.request.contextPath}/js/catalog.js"></script>
 </main>

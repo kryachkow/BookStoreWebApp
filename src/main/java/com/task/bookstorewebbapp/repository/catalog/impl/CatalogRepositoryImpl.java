@@ -7,9 +7,9 @@ import com.task.bookstorewebbapp.db.dao.impl.PublisherDAO;
 import com.task.bookstorewebbapp.db.entity.BookEntity;
 import com.task.bookstorewebbapp.db.entity.CategoryEntity;
 import com.task.bookstorewebbapp.db.entity.PublisherEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
 import com.task.bookstorewebbapp.model.CatalogFilterDTO;
 import com.task.bookstorewebbapp.repository.catalog.CatalogRepository;
+import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -23,9 +23,10 @@ public class CatalogRepositoryImpl implements CatalogRepository {
   private final DAO<PublisherEntity> publisherEntityDAO = new PublisherDAO();
   private final DAO<CategoryEntity> categoryEntityDAO = new CategoryDAO();
 
-  private static final Map<String, Comparator<BookEntity>> sortingComparators = new HashMap<>();
-  static
-  {
+  private final Map<String, Comparator<BookEntity>> sortingComparators = new HashMap<>();
+
+
+  public CatalogRepositoryImpl() {
     sortingComparators.put(
         "bookTitle", Comparator.comparing(BookEntity::getBookTitle)
     );
@@ -37,12 +38,10 @@ public class CatalogRepositoryImpl implements CatalogRepository {
     );
   }
 
-  public CatalogRepositoryImpl() {
-  }
 
   @Override
   public List<BookEntity> getBooksByFilter(CatalogFilterDTO catalogFilterDTO)
-      throws DAOException {
+      throws SQLException {
     return bookEntityDAO.getEntities().stream()
         .filter(e -> catalogFilterDTO.getTitleSearch() == null ||
             e.getBookTitle().toLowerCase(Locale.ROOT).contains(catalogFilterDTO.getTitleSearch().toLowerCase()))
@@ -59,12 +58,12 @@ public class CatalogRepositoryImpl implements CatalogRepository {
   }
 
   @Override
-  public List<PublisherEntity> getPublishers() throws DAOException {
+  public List<PublisherEntity> getPublishers() throws SQLException {
     return publisherEntityDAO.getEntities();
   }
 
   @Override
-  public List<CategoryEntity> getCategories() throws DAOException {
+  public List<CategoryEntity> getCategories() throws SQLException {
     return categoryEntityDAO.getEntities();
   }
 }

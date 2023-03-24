@@ -4,7 +4,6 @@ import com.task.bookstorewebbapp.db.DBUtils;
 import com.task.bookstorewebbapp.db.SearchField;
 import com.task.bookstorewebbapp.db.dao.DAO;
 import com.task.bookstorewebbapp.db.entity.UserEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +32,7 @@ public class UserDAO implements DAO<UserEntity> {
 
 
   @Override
-  public <V> UserEntity getEntityByField(SearchField<V> fieldValue) throws DAOException {
+  public <V> UserEntity getEntityByField(SearchField<V> fieldValue) throws SQLException {
     UserEntity user;
     try (Connection con = connectionSupplier.getConnection();
         PreparedStatement ps = con.prepareStatement(
@@ -47,23 +46,23 @@ public class UserDAO implements DAO<UserEntity> {
       }
     } catch (SQLException e) {
       LOGGER.warn("Cannot select user by " + fieldValue.getName(), e);
-      throw new DAOException("Cannot select user by" + fieldValue.getName(), e);
+      throw new SQLException("Cannot select user by" + fieldValue.getName(), e);
     }
     return user;
   }
 
   @Override
-  public <V> List<UserEntity> getEntitiesByField(V fieldValue) throws DAOException {
+  public <V> List<UserEntity> getEntitiesByField(V fieldValue) throws SQLException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public List<UserEntity> getEntities() throws DAOException {
+  public List<UserEntity> getEntities() throws SQLException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public long insertEntity(UserEntity entity) throws DAOException {
+  public long insertEntity(UserEntity entity) throws SQLException {
     long id;
     try (Connection con = connectionSupplier.getConnection();
         PreparedStatement ps = con.prepareStatement(INSERT_USER_STATEMENT,
@@ -80,18 +79,18 @@ public class UserDAO implements DAO<UserEntity> {
       id = generatedKeys.getInt(1);
     } catch (SQLException e) {
       LOGGER.error("Cannot insert user ", e);
-      throw new DAOException("Cannot insert user", e);
+      throw new SQLException("Cannot insert user", e);
     }
     return id;
   }
 
   @Override
-  public boolean updateEntity(UserEntity entity) throws DAOException {
+  public boolean updateEntity(UserEntity entity) throws SQLException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public boolean deleteEntity(UserEntity entity) throws DAOException {
+  public boolean deleteEntity(UserEntity entity) throws SQLException {
     throw new UnsupportedOperationException();
   }
 

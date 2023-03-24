@@ -14,46 +14,58 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <junit.version>5.8.2</junit.version>
+    <junit.version>5.9.2</junit.version>
+    <servlet-api.version>6.0.0</servlet-api.version>
+    <servlet.jsp-api.version>3.1.1</servlet.jsp-api.version>
+    <glassfish.version>2.0.0</glassfish.version>
+    <mysql-connector.version>8.0.32</mysql-connector.version>
+    <bytebuddy.version>1.14.1</bytebuddy.version>
+    <log4j.version>1.2.17</log4j.version>
+    <mockito.version>5.2.0</mockito.version>
+    <powermock.version>2.0.9</powermock.version>
+    <commons-codec.version>1.15</commons-codec.version>
+    <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+    <maven-sunfire-plugin.version>2.22.2</maven-sunfire-plugin.version>
+    <junit.platform.version>1.3.2</junit.platform.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
-      <version>6.0.0</version>
+      <version>${servlet-api.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>jakarta.servlet.jsp</groupId>
       <artifactId>jakarta.servlet.jsp-api</artifactId>
-      <version>3.0.0</version>
+      <version>${servlet.jsp-api.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.glassfish.web</groupId>
       <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-      <version>2.0.0</version>
+      <version>${glassfish.version}</version>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.16</version>
+      <version>${mysql-connector.version}</version>
     </dependency>
     <dependency>
       <groupId>net.bytebuddy</groupId>
       <artifactId>byte-buddy</artifactId>
-      <version>LATEST</version>
+      <version>${bytebuddy.version}</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <version>${log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-inline</artifactId>
-      <version>3.8.0</version>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -72,38 +84,32 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
-      <version>5.8.2</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>4.6.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-inline</artifactId>
-      <version>3.4.6</version>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
-      <version>2.17.0</version>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-reflect</artifactId>
-      <version>1.6.1</version>
+      <version>${powermock.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
-      <version>1.11</version>
+      <version>${commons-codec.version}</version>
     </dependency>
 
 
@@ -114,24 +120,24 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.3.2</version>
+        <version>${maven-war-plugin.version}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>9</source>
-          <target>9</target>
+          <source>15</source>
+          <target>15</target>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>${maven-sunfire-plugin.version}</version>
         <dependencies>
           <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-surefire-provider</artifactId>
-            <version>1.3.2</version>
+            <version>${junit.platform.version}</version>
           </dependency>
         </dependencies>
       </plugin>

@@ -6,8 +6,6 @@
 </head>
 <body>
 
-
-
 <header>
   <%@include file="WEB-INF/include/navbar.jspf"%>
 </header>

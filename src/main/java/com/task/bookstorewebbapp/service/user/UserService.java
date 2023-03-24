@@ -1,21 +1,22 @@
 package com.task.bookstorewebbapp.service.user;
 
-import com.task.bookstorewebbapp.db.entity.UserEntity;
-import com.task.bookstorewebbapp.db.exception.DAOException;
+import com.task.bookstorewebbapp.model.User;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
 
-  UserEntity getUserByNickname(String nickname);
+  Optional<User> getUserByNickname(String nickname);
 
-  UserEntity getUserByEmail(String email);
+  Optional<User> getUserByEmail(String email);
 
-  UserEntity addUser(String email, String name, String surname, String nickname,
+  Optional<User> addUser(String email, String name, String surname, String nickname,
       String password,
-      boolean mailingSubscription) throws DAOException;
+      boolean mailingSubscription);
 
+  Optional<User> authenticateUser(String email, String password);
 
-  List<UserEntity> getUsers();
+  List<User> getUsers();
 
 }
