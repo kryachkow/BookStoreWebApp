@@ -10,58 +10,68 @@ import java.io.PrintWriter;
 
 public class GZipWrapper extends HttpServletResponseWrapper {
 
-  private GzipServletOutputStream gzipOutputStream;
+
+  private GzipServletOutputStream gzipStream;
+  private ServletOutputStream outputStream;
   private PrintWriter printWriter;
 
-  public GZipWrapper(HttpServletResponse response) {
+  public GZipWrapper(HttpServletResponse response) throws IOException {
     super(response);
   }
 
-  public void close() throws IOException {
-    if (gzipOutputStream != null) {
-      gzipOutputStream.close();
-    }
+  public void finish() throws IOException {
     if (printWriter != null) {
       printWriter.close();
     }
+    if (outputStream != null) {
+      outputStream.close();
+    }
+    if (gzipStream != null) {
+      gzipStream.close();
+    }
   }
 
+  @Override
+  public void flushBuffer() throws IOException {
+    if (printWriter != null) {
+      printWriter.flush();
+    }
+    if (outputStream != null) {
+      outputStream.flush();
+    }
+    super.flushBuffer();
+  }
 
   @Override
   public ServletOutputStream getOutputStream() throws IOException {
     if (printWriter != null) {
-      throw new IllegalStateException(
-          "PrintWriter obtained already - cannot get OutputStream");
+      throw new IllegalStateException("printWriter already defined");
     }
-    if (gzipOutputStream == null) {
-      gzipOutputStream = new GzipServletOutputStream(
-          getResponse().getOutputStream());
+    if (outputStream == null) {
+      initGzip();
+      outputStream = gzipStream;
     }
-    return gzipOutputStream;
+    return outputStream;
   }
 
   @Override
   public PrintWriter getWriter() throws IOException {
-    if (this.printWriter == null && this.gzipOutputStream != null) {
-      throw new IllegalStateException(
-          "OutputStream obtained already - cannot get PrintWriter");
+    if (outputStream != null) {
+      throw new IllegalStateException("printWriter already defined");
     }
     if (printWriter == null) {
-      gzipOutputStream = new GzipServletOutputStream(
-          getResponse().getOutputStream());
-      printWriter = new PrintWriter(new OutputStreamWriter(
-          gzipOutputStream, getResponse().getCharacterEncoding()));
+      initGzip();
+      printWriter = new PrintWriter(new OutputStreamWriter(gzipStream, getResponse().getCharacterEncoding()));
     }
     return printWriter;
   }
 
-
   @Override
-  public void flushBuffer() throws IOException {
-    if(gzipOutputStream != null)
-      gzipOutputStream.flush();
-    if(printWriter != null)
-      printWriter.flush();
-    super.flushBuffer();
+  public void setContentLength(int len) {
   }
+
+  private void initGzip() throws IOException {
+    gzipStream = new GzipServletOutputStream(getResponse().getOutputStream());
+  }
+
 }

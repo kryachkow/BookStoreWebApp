@@ -29,7 +29,7 @@ public class GzipFilter implements Filter {
       GZipWrapper gzipResponse =
           new GZipWrapper(httpResponse);
       chain.doFilter(request, gzipResponse);
-      gzipResponse.close();
+      gzipResponse.finish();
     } else {
       chain.doFilter(request, response);
     }
