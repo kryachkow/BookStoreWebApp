@@ -34,6 +34,12 @@ public final class Constants {
   public static final String ERROR_ATTRIBUTE = "error";
   public static final String PAYMENT_TYPE_ID = "paymentTypeId";
   public static final String PAYMENT_DETAILS = "paymentDetails";
+  public static final String LOCALE_ATTRIBUTE = "locale";
+  public static final String LANG_PARAMETER = "lang";
+
+  public static final String CONTENT_ENCODING_HEADER = "Content-Encoding";
+  public static final String ACCEPT_ENCODING_HEADER = "Accept-Encoding";
+  public static final String ENCODING = "gzip";
 
 
   private Constants() {

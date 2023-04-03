@@ -78,43 +78,44 @@
                 <h1 class="text--dark-gray centered">Total price is ${requestScope.totalPrice}</h1>
             </div>
         </div>
+        <c:choose>
+            <c:when test="${sessionScope.user == null}">
+                <div class="align--center pt1 pb1">
+                    <p class="h4 text--dark-gray bold">Please <a href="signIn">Sign In</a> or <a
+                            href="signUp">SignUp</a> to make the order! </p>
+                </div>
+            </c:when>
+
+            <c:otherwise>
+                <form action="order" method="post">
+                    <div class="align--center">
+                        <label class="h4 text--dark-gray bold" for="paymentTypeId">Choose payment type</label>
+                        <select id="paymentTypeId" name="paymentTypeId" required>
+                            <c:forEach items="${requestScope.paymentTypes}" var="paymentType">
+                                <option value=${paymentType.id}>
+                                        ${paymentType.paymentType}
+                                </option>
+                            </c:forEach>
+                        </select>
+
+                        <label class="h4 text--dark-gray mb1 p1 bold" for="paymentDetails">Payment details:</label>
+                        <input type="text" id="paymentDetails" name="paymentDetails"
+                               placeholder="Enter your phone and payment details(card number/your address)"
+                               minlength="4">
+
+                    </div>
+
+                    <div class="centered align--center">
+                        <button type="submit" class="btn--default btn">Make Order</button>
+                    </div>
+
+                </form>
+            </c:otherwise>
+        </c:choose>
     </c:otherwise>
 </c:choose>
 
-<c:choose>
-    <c:when test="${sessionScope.user == null}">
-        <div class="align--center pt1 pb1">
-            <p class="h4 text--dark-gray bold">Please <a href="signIn">Sign In</a> or <a
-                    href="signUp">SignUp</a> to make the order! </p>
-        </div>
-    </c:when>
 
-    <c:otherwise>
-        <form action="order" method="post">
-            <div class="align--center">
-                <label class="h4 text--dark-gray bold" for="paymentTypeId">Choose payment type</label>
-                <select id="paymentTypeId" name="paymentTypeId" required>
-                    <c:forEach items="${requestScope.paymentTypes}" var="paymentType">
-                        <option value=${paymentType.id}>
-                                ${paymentType.paymentType}
-                        </option>
-                    </c:forEach>
-                </select>
-
-                <label class="h4 text--dark-gray mb1 p1 bold" for="paymentDetails">Payment details:</label>
-                <input type="text" id="paymentDetails" name="paymentDetails"
-                       placeholder="Enter your phone and payment details(card number/your address)"
-                       minlength="4">
-
-            </div>
-
-            <div class="centered align--center">
-                <button type="submit" class="btn--default btn">Make Order</button>
-            </div>
-
-        </form>
-    </c:otherwise>
-</c:choose>
 <div class="align--center" style="color: red ; text-align: center;">
     <c:out value="${requestScope.error}" default=""/>
 </div>

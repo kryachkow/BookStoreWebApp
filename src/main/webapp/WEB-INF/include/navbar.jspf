@@ -1,8 +1,11 @@
 <link rel="stylesheet" href="template/carta/dist/css/production.css">
 <%@ taglib prefix="a" uri="/WEB-INF/include/avatarTag.tld" %>
+<%@ taglib prefix="l" uri="/WEB-INF/include/localeTag.tld" %>
 
 
 <div class="top-nav">
+    <l:locale>
+    </l:locale>
     <a:avatar>
     </a:avatar>
 </div>

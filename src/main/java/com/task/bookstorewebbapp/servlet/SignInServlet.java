@@ -35,7 +35,7 @@ public class SignInServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException {
+      throws IOException, ServletException {
     ValidationDTO<User> validationDTO = new ValidationDTO<>(req, ValidationUtils.getValidationForm(req));
 
     if (validationService.checkErrors(validationDTO)) {

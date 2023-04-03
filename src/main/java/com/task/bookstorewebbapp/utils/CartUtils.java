@@ -19,7 +19,7 @@ public final class CartUtils {
           }
         }
       );
-    cartOperationsMap.put("increase", (cart, bookId) -> cart.setQuantity(bookId, cart.getItemQuantity() + 1));
+    cartOperationsMap.put("increase", (cart, bookId) -> cart.setQuantity(bookId, cart.getAmountById(bookId) + 1));
     cartOperationsMap.put("remove", Cart::remove);
   }
 
