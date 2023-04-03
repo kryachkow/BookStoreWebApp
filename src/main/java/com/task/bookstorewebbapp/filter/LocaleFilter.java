@@ -18,9 +18,6 @@ public class LocaleFilter implements Filter {
 
   private  static LocaleRepository localeRepository;
 
-
-
-
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {

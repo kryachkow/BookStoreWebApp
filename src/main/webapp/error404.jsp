@@ -1,4 +1,5 @@
-<%@include file="WEB-INF/include/header.jspf"%>
+<!DOCTYPE html>
+<%@include file="/WEB-INF/include/header.jspf"%>
 <html>
 <head>
     <title>Error Not Found</title>

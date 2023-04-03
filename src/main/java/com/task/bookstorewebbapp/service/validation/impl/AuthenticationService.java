@@ -47,12 +47,14 @@ public class AuthenticationService implements ValidationService<User> {
             validationDTO.getUserFormDTO().getPassword())
         .ifPresentOrElse(
             (user -> {
-              user.setAvatarSource(avatarRepository.getAvatar(user.getId()));
               validationDTO.setReturnValue(user);
+              user.setAvatarSource(avatarRepository.getAvatar(user.getId()));
             }),
             () -> validationDTO.getErrorMessage().append(WRONG_CREDENTIALS_MESSAGE)
         );
 
     return ValidationUtils.getErrorString(validationDTO);
   }
+
+
 }

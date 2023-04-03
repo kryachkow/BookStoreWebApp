@@ -27,7 +27,7 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-@WebServlet(name = "signUp", value = "/signUp")
+@WebServlet(name = "signUp", value = "/guest/signUp")
 @MultipartConfig(
     fileSizeThreshold = Constants.FILE_SIZE_THRESHOLD,
     maxFileSize = Constants.MAX_FILE_SIZE,
@@ -67,7 +67,7 @@ public class SingUpServlet extends HttpServlet {
         avatarRepository.addAvatarToCatalog(request.getPart(AVATAR_PART), userModel.getId());
         userModel.setAvatarSource(avatarRepository.getAvatar(userModel.getId()));
         request.getSession().setAttribute(Constants.USER_ATTRIBUTE, userModel);
-        response.sendRedirect(ProjectPaths.INDEX_JSP);
+        response.sendRedirect(Constants.FOLDER_EXIT + ProjectPaths.INDEX_JSP);
       } catch (SQLException | ServletException e) {
         LOGGER.error(Constants.DATABASE_ERROR, e);
         sendError(request, response, validationDTO.getUserFormDTO(), Constants.DATABASE_ERROR);

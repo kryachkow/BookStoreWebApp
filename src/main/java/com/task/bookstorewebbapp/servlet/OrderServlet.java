@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "order", value = "/order")
+@WebServlet(name = "order", value = "/user/order")
 public class OrderServlet extends HttpServlet {
 
   OrderService orderService = new OrderServiceImpl();
@@ -43,6 +43,6 @@ public class OrderServlet extends HttpServlet {
       return;
     }
     CartUtils.getCart(req).cleanCart();
-    resp.sendRedirect(ProjectPaths.INDEX_JSP);
+    resp.sendRedirect(Constants.FOLDER_EXIT + ProjectPaths.INDEX_JSP);
   }
 }

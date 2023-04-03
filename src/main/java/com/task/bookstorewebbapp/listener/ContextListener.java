@@ -26,6 +26,8 @@ public class ContextListener implements ServletContextListener {
   private static final String LOG4J_LOCATION = "log4j-config-location";
   private static final String BASE_LOCALE_LOCATION = "javax.servlet.jsp.jstl.fmt.locale";
   private static final String LOCALES = "locales";
+
+
   private static final int COOKIE_AGE = 10800;
   private static final Logger LOGGER = LogManager.getLogger(ContextListener.class.getName());
 

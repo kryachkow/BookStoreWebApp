@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public interface UserService {
 
+  String getRoleNameByUserId(long id);
 
   Optional<User> getUserByNickname(String nickname);
 

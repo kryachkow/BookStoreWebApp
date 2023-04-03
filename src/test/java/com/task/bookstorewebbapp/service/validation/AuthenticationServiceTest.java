@@ -43,7 +43,7 @@ class AuthenticationServiceTest {
   private static AvatarRepositoryImpl avatarRepository;
   private final AuthenticationService validationService = new AuthenticationService();
   private final UserEntity testEntity = new UserEntity(1, "example@email.com", "Name", "Name",
-      "Name", PasswordUtils.encodePassword("12345678"), true);
+      "Name", PasswordUtils.encodePassword("12345678"), true, 1);
 
 
   @BeforeAll

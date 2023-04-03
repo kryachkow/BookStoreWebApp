@@ -40,6 +40,6 @@ public class GzipFilter implements Filter {
         httpRequest.getHeader(Constants.ACCEPT_ENCODING_HEADER);
 
     return acceptEncoding != null &&
-        acceptEncoding.contains(Constants.ENCODING);
+        acceptEncoding.contains(Constants.ENCODING) && !httpRequest.getRequestURI().contains("error");
   }
 }

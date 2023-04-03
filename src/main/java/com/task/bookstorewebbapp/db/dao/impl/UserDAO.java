@@ -22,6 +22,7 @@ public class UserDAO implements DAO<UserEntity> {
   private static final String NICKNAME = "nickname";
   private static final String PASSWORD = "password";
   private static final String MAILING_SUBSCRIPTION = "mailing_subscription";
+  private static final String ROLE_ID = "role_id";
 
   private static final String SELECT_BY_FIELD_STATEMENT = "SELECT * FROM users WHERE %s = ?";
   private static final String INSERT_USER_STATEMENT = "INSERT INTO `users`(`email`,`name`,`surname`,`nickname`,`password`,`mailing_subscription`) VALUES(?,?,?,?,?,?)";
@@ -104,6 +105,7 @@ public class UserDAO implements DAO<UserEntity> {
     user.setNickname(resultSet.getString(NICKNAME));
     user.setPassword(resultSet.getString(PASSWORD));
     user.setMailingSubscription(resultSet.getBoolean(MAILING_SUBSCRIPTION));
+    user.setRoleId(resultSet.getLong(ROLE_ID));
     return user;
   }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class AvatarTag extends TagSupport {
 
-  private static final String GUEST_NAV = "<a class=\"h3 mb1 p1 bold float--right pr4 inline-block\" href=\"signIn\">SignIn</a>\n";
+  private static final String GUEST_NAV = "<a class=\"h3 mb1 p1 bold float--right pr4 inline-block\" href=\"guest/signIn\">SignIn</a>\n";
   private static final String USER_NAV = """
       <div class="top-nav">
           <div class="float--right pr4 pt2">

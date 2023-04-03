@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <%@include file="/WEB-INF/include/header.jspf" %>
 <html>
 <head>
     <%@include file="/WEB-INF/include/head.jspf" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <title>Book Store</title>
+    <title>ERROR 403 ACCESS FORBIDDEN</title>
 </head>
 <body>
 
@@ -16,7 +15,7 @@
 <main>
     <div class="align--center pt3">
         <div class="container border--bottom pb3">
-            <h1 class="mb2">Welcome to BookStore!</h1>
+            <h1 class="mb2">ADMIN</h1>
         </div>
     </div>
     <div class="container pt3 mt2 text--gray align--center">
@@ -44,4 +43,3 @@
 
 </body>
 </html>
-

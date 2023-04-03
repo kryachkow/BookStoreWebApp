@@ -48,6 +48,16 @@
                 <c:out value="${requestScope.signInError}" default="" />
             </div>
 
+            <c:choose >
+                <c:when test="${param.goBackTo != null}">
+                    <input type="hidden" name="goBackTo" value="${param.goBackTo}">
+                </c:when>
+                <c:when test="${requestScope.goBackTo != null}">
+                    <input type="hidden" name="goBackTo" value="${requestScope.goBackTo}">
+                </c:when>
+
+            </c:choose>
+
             <div>
                 <button class="btn btn--secondary m1" type="submit">Sign In</button>
             </div>
