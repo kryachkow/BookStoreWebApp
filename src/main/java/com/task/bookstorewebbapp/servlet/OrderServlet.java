@@ -30,7 +30,7 @@ public class OrderServlet extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     if (!OrderUtils.isOrderRequestValid(req)) {
-      resp.sendRedirect(ProjectPaths.CART_SERVLET);
+      resp.sendRedirect(Constants.FOLDER_EXIT + ProjectPaths.CART_SERVLET);
       return;
     }
     try {
@@ -39,7 +39,7 @@ public class OrderServlet extends HttpServlet {
           (User) req.getSession().getAttribute(Constants.USER_ATTRIBUTE));
     } catch (SQLException e) {
       req.getSession().setAttribute(Constants.ERROR_ATTRIBUTE, Constants.DATABASE_ERROR);
-      resp.sendRedirect(ProjectPaths.CART_SERVLET);
+      resp.sendRedirect(Constants.FOLDER_EXIT + ProjectPaths.CART_SERVLET);
       return;
     }
     CartUtils.getCart(req).cleanCart();
