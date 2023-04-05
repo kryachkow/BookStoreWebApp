@@ -48,11 +48,11 @@ public class AvatarRepositoryImpl implements AvatarRepository {
 
   @Override
   public String getAvatar(long userId) {
-    Path imgPath = Objects.requireNonNull(new File(CATALOG_PATH).listFiles(
-        (file) -> file.getName().contains(String.valueOf(userId))))[0].toPath();
-    if (Files.exists(imgPath)) {
+    File[] fileList = Objects.requireNonNull(new File(CATALOG_PATH).listFiles(
+        (file) -> file.getName().contains(String.valueOf(userId))));
+    if (fileList.length > 0 && Files.exists(fileList[0].toPath())) {
       try {
-        return CATALOG_PATH_PART + Base64.getEncoder().encodeToString(Files.readAllBytes(imgPath));
+        return CATALOG_PATH_PART + Base64.getEncoder().encodeToString(Files.readAllBytes(fileList[0].toPath()));
       } catch (IOException e) {
         LOGGER.error("Avatar exists but couldn`t be retrieved", e);
         return BASE_AVATAR_PATH;

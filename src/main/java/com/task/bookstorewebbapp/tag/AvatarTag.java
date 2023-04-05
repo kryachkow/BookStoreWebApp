@@ -15,7 +15,7 @@ public class AvatarTag extends TagSupport {
           <div class="float--right pr4 pt2">
               <h3 class="inline-block">%s</h1>
               <img class="inline-block" src="%s" alt="%s" style="width:50px;height:50px;">
-              <a class="h3 mb1 p1 bold float--right pr4 inline-block" href="cart">Cart</a>
+              <a class="h3 mb1 p1 bold float--right pr4 inline-block" href="../cart">Cart</a>
           </div>
       </div>""";
 

@@ -22,17 +22,17 @@
         <p class="mb3">Menu</p>
         <div class="grid-row">
             <div class="grid-column span-half mb3">
-                <a class="link" href="catalog" title="stylesheet">Catalog</a>
+                <a class="link" href="../catalog" title="stylesheet">Catalog</a>
             </div>
             <c:choose >
                 <c:when test="${sessionScope.user == null}">
                     <div class="grid-column span-half mb3">
-                        <a class="link" href="guest/signUp">SignUp</a>
+                        <a class="link" href="../guest/signUp">SignUp</a>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="grid-column span-half mb3">
-                        <a class="link" href="user/logOut">LogOut</a>
+                        <a class="link" href="../user/logOut">LogOut</a>
                     </div>
                 </c:otherwise>
             </c:choose>

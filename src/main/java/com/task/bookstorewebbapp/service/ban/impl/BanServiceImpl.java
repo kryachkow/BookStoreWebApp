@@ -3,7 +3,6 @@ package com.task.bookstorewebbapp.service.ban.impl;
 import com.task.bookstorewebbapp.db.SearchField;
 import com.task.bookstorewebbapp.db.dao.DAO;
 import com.task.bookstorewebbapp.db.dao.impl.BanInfoDAO;
-import com.task.bookstorewebbapp.db.entity.UserEntity;
 import com.task.bookstorewebbapp.db.entity.BanInfoEntity;
 import com.task.bookstorewebbapp.service.ban.BanService;
 import java.sql.SQLException;
@@ -18,24 +17,25 @@ public class BanServiceImpl implements BanService {
 
   private static final int MAX_LOG_COUNT = 3;
   private static final Logger LOGGER = LogManager.getLogger(BanServiceImpl.class.getName());
+  private static final String ID_FIELD = "id";
 
 
   private final DAO<BanInfoEntity> banInfoDAO = new BanInfoDAO();
 
   @Override
-  public Optional<BanInfoEntity> getBanInfo(UserEntity userEntity) {
+  public Optional<BanInfoEntity> getBanInfo(long id) {
     BanInfoEntity banInfoEntity = null;
     try {
-      banInfoEntity = banInfoDAO.getEntityByField(new SearchField<>("id", userEntity.getId()));
+      banInfoEntity = banInfoDAO.getEntityByField(new SearchField<>(ID_FIELD, id));
     } catch (SQLException ignored) {
     }
     return Optional.ofNullable(banInfoEntity);
   }
 
   @Override
-  public boolean isUserBanned(UserEntity userEntity) {
+  public boolean isUserBanned(long id) {
     AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-    getBanInfo(userEntity).ifPresent(
+    getBanInfo(id).ifPresent(
         (banInfoEntity -> atomicBoolean.set(
             banInfoEntity.getDateTime() != null && banInfoEntity.getDateTime().isAfter(LocalDateTime.now())))
     );
@@ -43,17 +43,17 @@ public class BanServiceImpl implements BanService {
   }
 
   @Override
-  public boolean updateLogCountOnWrongLogIn(UserEntity userEntity) {
+  public boolean updateLogCountOnWrongLogIn(long id) {
     AtomicBoolean toReturn = new AtomicBoolean(false);
-    getBanInfo(userEntity).ifPresent(
+    getBanInfo(id).ifPresent(
         banInfoEntity -> toReturn.set(increaseLogCount(banInfoEntity))
     );
     return toReturn.get();
   }
 
   @Override
-  public boolean updateLogCountOnCorrectLogIn(UserEntity userEntity) {
-    return resetLogCount(userEntity.getId());
+  public boolean updateLogCountOnCorrectLogIn(long id) {
+    return resetLogCount(id);
   }
 
   @Override
@@ -80,10 +80,14 @@ public class BanServiceImpl implements BanService {
 
 
   private boolean increaseLogCount(BanInfoEntity banInfoEntity) {
-    banInfoEntity.setLogCount(banInfoEntity.getLogCount() + 1);
+    if(banInfoEntity.getDateTime() != null && banInfoEntity.getDateTime().isBefore(LocalDateTime.now())){
+      banInfoEntity.setLogCount(0);
+      banInfoEntity.setDateTime(null);
+    }
     if (banInfoEntity.getLogCount() > MAX_LOG_COUNT && banInfoEntity.getDateTime() == null) {
       banInfoEntity.setDateTime(LocalDateTime.now().plus(1, ChronoUnit.DAYS));
     }
+    banInfoEntity.setLogCount(banInfoEntity.getLogCount() + 1);
     try {
       return banInfoDAO.updateEntity(banInfoEntity);
     } catch (SQLException e) {

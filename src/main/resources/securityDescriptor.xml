@@ -1,17 +1,17 @@
 <security>
   <constraint>
-    <url-pattern>/admin/.*</url-pattern>
-    <role>admin</role >
+    <url-pattern>/protected/</url-pattern>
+    <role>admin</role>
   </constraint>
 
   <constraint>
-    <url-pattern>/user/.*</url-pattern>
+    <url-pattern>/user/</url-pattern>
     <role>user</role>
     <role>admin</role>
   </constraint>
 
   <constraint>
-    <url-pattern>/guest/.*</url-pattern>
+    <url-pattern>/guest/</url-pattern>
     <role>noRole</role>
   </constraint>
 

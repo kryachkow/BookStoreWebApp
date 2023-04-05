@@ -64,7 +64,7 @@ public class SignUpValidationService implements ValidationService<User> {
       }
     });
 
-    return ValidationUtils.getErrorString(validationDTO);
+    return ValidationUtils.checkErrorString(validationDTO);
   }
 }
 

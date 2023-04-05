@@ -34,7 +34,7 @@ public class LocaleTag extends TagSupport {
   @Override
   public int doStartTag() throws JspException {
     JspWriter out = pageContext.getOut();
-    Locale locale = localeRepository.getLocaleFormRequest((HttpServletRequest) pageContext.getRequest()).get();
+    Locale locale = localeRepository.getLocaleFormRequest((HttpServletRequest) pageContext.getRequest()).orElse(localeRepository.getBaseLocale());
     Set<Locale> accessibleLocales = localeRepository.getAccessibleLocales();
     StringBuilder optionsBuilder = new StringBuilder();
     accessibleLocales.forEach((loc) -> {

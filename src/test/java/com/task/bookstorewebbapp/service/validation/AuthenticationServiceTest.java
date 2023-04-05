@@ -33,8 +33,6 @@ import utils.DBUtilsStaticMock;
 
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceTest {
-
-//  private final static MockedStatic<DBUtils> dbUtilsMockedStatic = mockStatic(DBUtils.class);
   @Mock
   private HttpServletRequest request;
   @Mock
@@ -53,9 +51,11 @@ class AuthenticationServiceTest {
 
   @BeforeEach
   void setUp() throws DataSourceException {
-    when(userService.authenticateUser(Mockito.anyString(), Mockito.anyString())).thenReturn(Optional.empty());
-    lenient().when(userService.authenticateUser("example@email.com", "12345678")).thenReturn(
+    when(userService.getUserByEmail(Mockito.anyString())).thenReturn(Optional.empty());
+    lenient().when(userService.getUserByEmail("example@email.com")).thenReturn(
         Optional.of(User.toModel(testEntity)));
+    lenient().when(userService.passwordCheck(User.toModel(testEntity), "12345678")).thenReturn(true);
+    lenient().when(userService.isBanned(User.toModel(testEntity), true)).thenReturn(false);
     lenient().when(avatarRepository.getAvatar(Mockito.anyLong())).thenReturn(null);
     Whitebox.setInternalState(validationService, "userService", userService);
     Whitebox.setInternalState(validationService, "avatarRepository", avatarRepository);

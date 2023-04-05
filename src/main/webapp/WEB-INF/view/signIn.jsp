@@ -7,6 +7,7 @@
 </head>
 <body>
 <header class="align--center pt3">
+    <%@include file="/WEB-INF/include/navbar.jspf" %>
     <div class="container--lg border--bottom pb3">
         <h1 class="mb2">Sign In</h1>
     </div>

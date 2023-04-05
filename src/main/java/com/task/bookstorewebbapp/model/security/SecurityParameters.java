@@ -49,4 +49,12 @@ public class SecurityParameters {
   public int hashCode() {
     return Objects.hash(getUrlPattern(), getRoleNames());
   }
+
+  @Override
+  public String toString() {
+    return "SecurityParameters{" +
+        "urlPattern='" + urlPattern + '\'' +
+        ", roleNames=" + roleNames +
+        '}';
+  }
 }

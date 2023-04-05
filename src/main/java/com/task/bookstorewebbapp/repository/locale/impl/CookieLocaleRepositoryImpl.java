@@ -32,6 +32,9 @@ public class CookieLocaleRepositoryImpl implements LocaleRepository {
     if(langParam != null) {
       return Optional.of(Locale.forLanguageTag(langParam));
     }
+    if(request.getCookies().length == 0) {
+      return Optional.empty();
+    }
     for(Cookie cookie: request.getCookies()){
       if(cookie.getName().equals(Constants.LOCALE_ATTRIBUTE)) {
         locale = Locale.forLanguageTag(cookie.getValue());

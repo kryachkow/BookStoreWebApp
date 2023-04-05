@@ -5,6 +5,7 @@ import com.task.bookstorewebbapp.filter.LocaleFilter;
 import com.task.bookstorewebbapp.repository.captcha.CaptchaRepository;
 import com.task.bookstorewebbapp.repository.captcha.impl.CaptchaRepositoryCookieImpl;
 import com.task.bookstorewebbapp.repository.locale.impl.CookieLocaleRepositoryImpl;
+import com.task.bookstorewebbapp.repository.locale.impl.SessionLocaleRepositoryImpl;
 import com.task.bookstorewebbapp.tag.LocaleTag;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
@@ -26,7 +27,6 @@ public class ContextListener implements ServletContextListener {
   private static final String LOG4J_LOCATION = "log4j-config-location";
   private static final String BASE_LOCALE_LOCATION = "javax.servlet.jsp.jstl.fmt.locale";
   private static final String LOCALES = "locales";
-
 
   private static final int COOKIE_AGE = 10800;
   private static final Logger LOGGER = LogManager.getLogger(ContextListener.class.getName());
@@ -51,10 +51,12 @@ public class ContextListener implements ServletContextListener {
       throw new RuntimeException(e.getMessage(), e);
     }
     context.setAttribute(LOCALES, locales);
+    SessionLocaleRepositoryImpl sessionLocaleRepository = new SessionLocaleRepositoryImpl(locales, Locale.forLanguageTag(context.getInitParameter(BASE_LOCALE_LOCATION)));
+
     CookieLocaleRepositoryImpl cookieLocaleRepository = new CookieLocaleRepositoryImpl(locales,
         Locale.forLanguageTag(context.getInitParameter(BASE_LOCALE_LOCATION)), COOKIE_AGE);
-    LocaleFilter.setLocaleRepository(cookieLocaleRepository);
-    LocaleTag.setLocaleRepository(cookieLocaleRepository);
+    LocaleFilter.setLocaleRepository(sessionLocaleRepository);
+    LocaleTag.setLocaleRepository(sessionLocaleRepository);
     LOGGER.info("Application Start");
   }
 

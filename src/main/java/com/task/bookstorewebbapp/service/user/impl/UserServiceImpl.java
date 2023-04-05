@@ -81,17 +81,6 @@ public class UserServiceImpl implements UserService {
     return optionalUser;
   }
 
-  @Override
-  public Optional<User> authenticateUser(String email, String password) {
-    Optional<User> optionalUser;
-    try {
-      UserEntity userEntity = obtainUserEntityByEmail(email);
-      optionalUser = userBanResolver(userEntity, password);
-    } catch (SQLException e) {
-      optionalUser = Optional.empty();
-    }
-    return optionalUser;
-  }
 
 
   @Override
@@ -102,13 +91,27 @@ public class UserServiceImpl implements UserService {
   private UserEntity obtainUserEntityByEmail(String email) throws SQLException {
     return userDAO.getEntityByField(new SearchField<>(EMAIL_FIELD, email));
   }
-
-  private Optional<User> userBanResolver(UserEntity userEntity, String password) {
-    if(PasswordUtils.checkPassword(password, userEntity.getPassword()) && !banService.isUserBanned(userEntity)) {
-      banService.updateLogCountOnCorrectLogIn(userEntity);
-      return Optional.of(User.toModel(userEntity));
+  @Override
+  public boolean passwordCheck(User user, String password){
+    UserEntity userEntity;
+    try {
+      userEntity = userDAO.getEntityByField(new SearchField<>(ID_FIELD, user.getId()));
+    } catch (SQLException e) {
+      return false;
     }
-    banService.updateLogCountOnWrongLogIn(userEntity);
-    return Optional.empty();
+    return PasswordUtils.checkPassword(password, userEntity.getPassword());
+  }
+  @Override
+  public boolean isBanned(User user, boolean passwordCheck) {
+    if(!passwordCheck){
+      banService.updateLogCountOnWrongLogIn(user.getId());
+      return banService.isUserBanned(user.getId());
+    }
+    if(!banService.isUserBanned(user.getId())){
+      banService.updateLogCountOnCorrectLogIn(user.getId());
+      return false;
+    }
+    return true;
+
   }
 }
