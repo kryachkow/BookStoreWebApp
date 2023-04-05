@@ -16,7 +16,7 @@ import java.util.Locale;
 @WebFilter("/*")
 public class LocaleFilter implements Filter {
 
-  private  static LocaleRepository localeRepository;
+  private static LocaleRepository localeRepository;
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -31,11 +31,11 @@ public class LocaleFilter implements Filter {
     chain.doFilter(request, response);
   }
 
-  private Locale getMostOptimalLocale(HttpServletRequest request){
+  private Locale getMostOptimalLocale(HttpServletRequest request) {
     Enumeration<Locale> locales = request.getLocales();
     while (locales.hasMoreElements()) {
       Locale checkLocale = locales.nextElement();
-      if(localeRepository.getAccessibleLocales().contains(checkLocale)) {
+      if (localeRepository.getAccessibleLocales().contains(checkLocale)) {
         return checkLocale;
       }
     }
@@ -46,7 +46,6 @@ public class LocaleFilter implements Filter {
       LocaleRepository localeRepository) {
     LocaleFilter.localeRepository = localeRepository;
   }
-
 
 
 }

@@ -77,7 +77,6 @@ public class SecurityActionRepositoryImpl implements SecurityActionRepository {
 
   private static void loggedUserPageAction(FilteringAggregator<UserService> aggregator)
       throws ServletException, IOException {
-    System.out.println("logged");
     if (aggregator.getRequest().getSession().getAttribute(Constants.USER_ATTRIBUTE) == null) {
       aggregator.getResponse().sendRedirect(
           Constants.FOLDER_EXIT + ProjectPaths.SIGN_IN_SERVLET + urlParam + aggregator.getRequest()
@@ -90,7 +89,6 @@ public class SecurityActionRepositoryImpl implements SecurityActionRepository {
 
   private static void guestPageAction(FilteringAggregator<UserService> aggregator)
       throws ServletException, IOException {
-    System.out.println("guest");
     if (aggregator.getRequest().getSession().getAttribute(Constants.USER_ATTRIBUTE) == null) {
       aggregator.getChain().doFilter(aggregator.getRequest(), aggregator.getResponse());
       return;

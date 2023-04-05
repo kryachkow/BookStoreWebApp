@@ -1,4 +1,4 @@
-package com.task.bookstorewebbapp.filter;
+package com.task.bookstorewebbapp.filter.access;
 
 import com.task.bookstorewebbapp.model.security.FilteringAction;
 import com.task.bookstorewebbapp.model.security.FilteringAggregator;
@@ -21,13 +21,14 @@ import java.util.function.Predicate;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-@WebFilter(urlPatterns = {"/protected/*", "/guest/*", "/user/*"})
+@WebFilter(urlPatterns = {"/guest/*", "/protected/*", "/user/*"})
 public class AccessFilter implements Filter {
+
+  private static final String SECURITY_PARAM_PATH = "C:\\Users\\Admin\\Documents\\BookStoreWebbApp\\src\\main\\resources\\securityDescriptor.xml";
 
   private static final Logger LOGGER = LogManager.getLogger(AccessFilter.class.getName());
   private final UserService userService = new UserServiceImpl();
 
-  private static final String SECURITY_PARAM_PATH = "C:\\Users\\Admin\\Documents\\BookStoreWebbApp\\src\\main\\resources\\securityDescriptor.xml";
   private Map<Predicate<String>, FilteringAction<UserService>> filterMap;
 
 
@@ -53,8 +54,6 @@ public class AccessFilter implements Filter {
         .orElse(arg -> arg.getChain().doFilter(arg.getRequest(), arg.getResponse()))
         .acceptAggregator(aggregator);
   }
-
-
 
 
 }

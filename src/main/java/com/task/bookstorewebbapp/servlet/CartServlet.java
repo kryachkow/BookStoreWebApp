@@ -27,13 +27,12 @@ public class CartServlet extends HttpServlet {
   private static final String PAYMENT_TYPES = "paymentTypes";
 
 
-
   private final OrderService orderService = new OrderServiceImpl();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    ServletUtils.sessionAttributesToRequest(req,List.of(Constants.ERROR_ATTRIBUTE));
+    ServletUtils.sessionAttributesToRequest(req, List.of(Constants.ERROR_ATTRIBUTE));
     Cart cart = CartUtils.getCart(req);
     if (req.getParameter(COMMAND_PARAMETER) != null) {
       CartUtils.makeCartOperation(cart, Long.parseLong(req.getParameter(BOOK_ID_PARAMETER)),

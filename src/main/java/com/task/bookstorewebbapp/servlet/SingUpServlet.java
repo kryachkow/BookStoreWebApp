@@ -40,12 +40,10 @@ public class SingUpServlet extends HttpServlet {
   private static final String AVATAR_PART = "avatar";
   private static final Logger LOGGER = LogManager.getLogger(SingUpServlet.class.getName());
 
-
   private final CaptchaService captchaService = new CaptchaServiceImpl();
   private final ValidationService<User> validationService = new SignUpValidationService();
   private final UserService userService = new UserServiceImpl();
   private final AvatarRepository avatarRepository = new AvatarRepositoryImpl();
-
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,7 +57,8 @@ public class SingUpServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-    ValidationDTO<User> validationDTO = new ValidationDTO<>(request, ValidationUtils.getValidationForm(request));
+    ValidationDTO<User> validationDTO = new ValidationDTO<>(request,
+        ValidationUtils.getValidationForm(request));
 
     if (!validationService.checkErrors(validationDTO)) {
       try {
@@ -74,7 +73,8 @@ public class SingUpServlet extends HttpServlet {
       }
       return;
     }
-    sendError(request, response, validationDTO.getUserFormDTO(), validationDTO.getErrorMessage().toString().trim());
+    sendError(request, response, validationDTO.getUserFormDTO(),
+        validationDTO.getErrorMessage().toString().trim());
   }
 
   private User getUserFromDataBase(UserFormDTO userFormDTO) throws SQLException {

@@ -52,7 +52,8 @@ public class AvatarRepositoryImpl implements AvatarRepository {
         (file) -> file.getName().contains(String.valueOf(userId))));
     if (fileList.length > 0 && Files.exists(fileList[0].toPath())) {
       try {
-        return CATALOG_PATH_PART + Base64.getEncoder().encodeToString(Files.readAllBytes(fileList[0].toPath()));
+        return CATALOG_PATH_PART + Base64.getEncoder()
+            .encodeToString(Files.readAllBytes(fileList[0].toPath()));
       } catch (IOException e) {
         LOGGER.error("Avatar exists but couldn`t be retrieved", e);
         return BASE_AVATAR_PATH;

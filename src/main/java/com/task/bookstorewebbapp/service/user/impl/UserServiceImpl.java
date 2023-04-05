@@ -17,12 +17,9 @@ import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
 
-
-
   private static final String ID_FIELD = "id";
   private static final String NICKNAME_FIELD = "nickname";
   private static final String EMAIL_FIELD = "email";
-
   private final BanService banService = new BanServiceImpl();
   private final DAO<UserEntity> userDAO = new UserDAO();
   private final DAO<RoleEntity> roleDAO = new RoleDAO();
@@ -82,7 +79,6 @@ public class UserServiceImpl implements UserService {
   }
 
 
-
   @Override
   public List<User> getUsers() {
     throw new UnsupportedOperationException();
@@ -91,8 +87,9 @@ public class UserServiceImpl implements UserService {
   private UserEntity obtainUserEntityByEmail(String email) throws SQLException {
     return userDAO.getEntityByField(new SearchField<>(EMAIL_FIELD, email));
   }
+
   @Override
-  public boolean passwordCheck(User user, String password){
+  public boolean passwordCheck(User user, String password) {
     UserEntity userEntity;
     try {
       userEntity = userDAO.getEntityByField(new SearchField<>(ID_FIELD, user.getId()));
@@ -101,13 +98,14 @@ public class UserServiceImpl implements UserService {
     }
     return PasswordUtils.checkPassword(password, userEntity.getPassword());
   }
+
   @Override
   public boolean isBanned(User user, boolean passwordCheck) {
-    if(!passwordCheck){
+    if (!passwordCheck) {
       banService.updateLogCountOnWrongLogIn(user.getId());
       return banService.isUserBanned(user.getId());
     }
-    if(!banService.isUserBanned(user.getId())){
+    if (!banService.isUserBanned(user.getId())) {
       banService.updateLogCountOnCorrectLogIn(user.getId());
       return false;
     }

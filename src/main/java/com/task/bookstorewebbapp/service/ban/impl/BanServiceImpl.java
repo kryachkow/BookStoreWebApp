@@ -16,9 +16,8 @@ import org.apache.log4j.Logger;
 public class BanServiceImpl implements BanService {
 
   private static final int MAX_LOG_COUNT = 3;
-  private static final Logger LOGGER = LogManager.getLogger(BanServiceImpl.class.getName());
   private static final String ID_FIELD = "id";
-
+  private static final Logger LOGGER = LogManager.getLogger(BanServiceImpl.class.getName());
 
   private final DAO<BanInfoEntity> banInfoDAO = new BanInfoDAO();
 
@@ -37,7 +36,8 @@ public class BanServiceImpl implements BanService {
     AtomicBoolean atomicBoolean = new AtomicBoolean(false);
     getBanInfo(id).ifPresent(
         (banInfoEntity -> atomicBoolean.set(
-            banInfoEntity.getDateTime() != null && banInfoEntity.getDateTime().isAfter(LocalDateTime.now())))
+            banInfoEntity.getDateTime() != null && banInfoEntity.getDateTime()
+                .isAfter(LocalDateTime.now())))
     );
     return atomicBoolean.get();
   }
@@ -80,7 +80,8 @@ public class BanServiceImpl implements BanService {
 
 
   private boolean increaseLogCount(BanInfoEntity banInfoEntity) {
-    if(banInfoEntity.getDateTime() != null && banInfoEntity.getDateTime().isBefore(LocalDateTime.now())){
+    if (banInfoEntity.getDateTime() != null && banInfoEntity.getDateTime()
+        .isBefore(LocalDateTime.now())) {
       banInfoEntity.setLogCount(0);
       banInfoEntity.setDateTime(null);
     }

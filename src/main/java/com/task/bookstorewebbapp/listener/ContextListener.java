@@ -51,8 +51,8 @@ public class ContextListener implements ServletContextListener {
       throw new RuntimeException(e.getMessage(), e);
     }
     context.setAttribute(LOCALES, locales);
-    SessionLocaleRepositoryImpl sessionLocaleRepository = new SessionLocaleRepositoryImpl(locales, Locale.forLanguageTag(context.getInitParameter(BASE_LOCALE_LOCATION)));
-
+    SessionLocaleRepositoryImpl sessionLocaleRepository = new SessionLocaleRepositoryImpl(locales,
+        Locale.forLanguageTag(context.getInitParameter(BASE_LOCALE_LOCATION)));
     CookieLocaleRepositoryImpl cookieLocaleRepository = new CookieLocaleRepositoryImpl(locales,
         Locale.forLanguageTag(context.getInitParameter(BASE_LOCALE_LOCATION)), COOKIE_AGE);
     LocaleFilter.setLocaleRepository(sessionLocaleRepository);

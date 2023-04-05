@@ -30,7 +30,8 @@ public class SignInServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    ServletUtils.sessionAttributesToRequest(req, List.of(SIGN_IN_FORM_ATTRIBUTE, ERROR_ATTRIBUTE, GO_BACK_TO_PARAM));
+    ServletUtils.sessionAttributesToRequest(req,
+        List.of(SIGN_IN_FORM_ATTRIBUTE, ERROR_ATTRIBUTE, GO_BACK_TO_PARAM));
     req.getRequestDispatcher(ProjectPaths.SING_IN_JSP).forward(req, resp);
 
   }
@@ -38,18 +39,21 @@ public class SignInServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws IOException, ServletException {
-    ValidationDTO<User> validationDTO = new ValidationDTO<>(req, ValidationUtils.getValidationForm(req));
+    ValidationDTO<User> validationDTO = new ValidationDTO<>(req,
+        ValidationUtils.getValidationForm(req));
     Optional<String> goBackToParam = Optional.ofNullable(req.getParameter(GO_BACK_TO_PARAM));
 
     if (validationService.checkErrors(validationDTO)) {
       req.getSession().setAttribute(SIGN_IN_FORM_ATTRIBUTE, validationDTO.getUserFormDTO());
-      req.getSession().setAttribute(ERROR_ATTRIBUTE, validationDTO.getErrorMessage().toString().trim());
+      req.getSession()
+          .setAttribute(ERROR_ATTRIBUTE, validationDTO.getErrorMessage().toString().trim());
       goBackToParam.ifPresent(param -> req.getSession().setAttribute(GO_BACK_TO_PARAM, param));
       resp.sendRedirect(Constants.FOLDER_EXIT + ProjectPaths.SIGN_IN_SERVLET);
     } else {
       StringBuilder returnURl = new StringBuilder();
       req.getSession().setAttribute(Constants.USER_ATTRIBUTE, validationDTO.getReturnValue());
-      goBackToParam.ifPresentOrElse(returnURl::append, () -> returnURl.append(Constants.FOLDER_EXIT + ProjectPaths.INDEX_JSP));
+      goBackToParam.ifPresentOrElse(returnURl::append,
+          () -> returnURl.append(Constants.FOLDER_EXIT + ProjectPaths.INDEX_JSP));
       resp.sendRedirect(returnURl.toString());
     }
   }

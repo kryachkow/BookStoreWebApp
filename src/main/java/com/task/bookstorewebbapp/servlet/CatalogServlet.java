@@ -27,10 +27,7 @@ public class CatalogServlet extends HttpServlet {
   private static final String PAGINATION = "pagination";
   private static final String ERROR = "Couldn't get books form database, please try again later";
   private static final String ERROR_ATTRIBUTE = "catalog error";
-
   private static final Logger LOGGER = LogManager.getLogger(CatalogServlet.class.getName());
-
-
   private final CatalogService catalogService = new CatalogServiceImpl(new CatalogRepositoryImpl());
 
 
