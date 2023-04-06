@@ -15,7 +15,7 @@ public final class OrderUtils {
   static {
     orderValidationMap.put((request -> CartUtils.getCart(request).isEmpty()), CART_IS_EMPTY);
     orderValidationMap.put((request -> request.getSession().getAttribute(Constants.USER_ATTRIBUTE) == null), UNAUTHENTICATED_USER);
-    orderValidationMap.put((request -> Integer.parseInt(request.getParameter(Constants.PAYMENT_TYPE_ID)) < 1), INVALID_PAYMENT_TYPE);
+    orderValidationMap.put((request -> request.getParameter(Constants.PAYMENT_TYPE_ID)== null || Integer.parseInt(request.getParameter(Constants.PAYMENT_TYPE_ID)) < 1), INVALID_PAYMENT_TYPE);
     orderValidationMap.put((request -> request.getParameter(Constants.PAYMENT_DETAILS) == null), INVALID_PAYMENT_DETAILS);
   }
   private OrderUtils(){}

@@ -11,20 +11,21 @@ public class UserEntity {
   private String nickname;
   private String password;
   private boolean mailingSubscription;
+  private long roleId;
 
   public UserEntity() {
   }
 
-
-  public UserEntity(long id, String email, String name, String surname, String nickName,
-      String password, boolean mailingSubscription) {
+  public UserEntity(long id, String email, String name, String surname, String nickname,
+      String password, boolean mailingSubscription, long roleId) {
     this.id = id;
     this.email = email;
     this.name = name;
     this.surname = surname;
-    this.nickname = nickName;
+    this.nickname = nickname;
     this.password = password;
     this.mailingSubscription = mailingSubscription;
+    this.roleId = roleId;
   }
 
 
@@ -84,6 +85,14 @@ public class UserEntity {
     this.mailingSubscription = mailingSubscription;
   }
 
+  public long getRoleId() {
+    return roleId;
+  }
+
+  public void setRoleId(long roleId) {
+    this.roleId = roleId;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -94,26 +103,15 @@ public class UserEntity {
     }
     UserEntity that = (UserEntity) o;
     return getId() == that.getId() && isMailingSubscription() == that.isMailingSubscription()
-        && getEmail().equals(that.getEmail()) && getName().equals(that.getName())
-        && getSurname().equals(that.getSurname()) && getNickname().equals(that.getNickname())
-        && getPassword().equals(that.getPassword());
+        && getRoleId() == that.getRoleId() && Objects.equals(getEmail(), that.getEmail())
+        && Objects.equals(getName(), that.getName()) && Objects.equals(
+        getSurname(), that.getSurname()) && Objects.equals(getNickname(),
+        that.getNickname()) && Objects.equals(getPassword(), that.getPassword());
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(getId(), getEmail(), getName(), getSurname(), getNickname(), getPassword(),
-        isMailingSubscription());
-  }
-
-  @Override
-  public String toString() {
-    return "UserEntity{" +
-        "id=" + id +
-        ", email='" + email + '\'' +
-        ", name='" + name + '\'' +
-        ", surname='" + surname + '\'' +
-        ", nickName='" + nickname + '\'' +
-        ", mailingSubscription=" + mailingSubscription +
-        '}';
+        isMailingSubscription(), getRoleId());
   }
 }

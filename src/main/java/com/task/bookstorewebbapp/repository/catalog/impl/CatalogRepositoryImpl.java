@@ -44,7 +44,8 @@ public class CatalogRepositoryImpl implements CatalogRepository {
       throws SQLException {
     return bookEntityDAO.getEntities().stream()
         .filter(e -> catalogFilterDTO.getTitleSearch() == null ||
-            e.getBookTitle().toLowerCase(Locale.ROOT).contains(catalogFilterDTO.getTitleSearch().toLowerCase()))
+            e.getBookTitle().toLowerCase(Locale.ROOT)
+                .contains(catalogFilterDTO.getTitleSearch().toLowerCase()))
         .filter(e -> catalogFilterDTO.getCategoryId() <= 0
             || e.getCategoryEntity().getId() == catalogFilterDTO.getCategoryId())
         .filter(e -> catalogFilterDTO.getPublisherId() <= 0
@@ -52,8 +53,10 @@ public class CatalogRepositoryImpl implements CatalogRepository {
         .filter(e -> e.getPrice() >= catalogFilterDTO.getMinPrice()
             && e.getPrice() <= catalogFilterDTO.getMaxPrice())
         .sorted(catalogFilterDTO.isInverted()
-            ? sortingComparators.getOrDefault(catalogFilterDTO.getSorting(), Comparator.comparing(BookEntity::getBookTitle)).reversed()
-            : sortingComparators.getOrDefault(catalogFilterDTO.getSorting(), Comparator.comparing(BookEntity::getBookTitle)))
+            ? sortingComparators.getOrDefault(catalogFilterDTO.getSorting(),
+            Comparator.comparing(BookEntity::getBookTitle)).reversed()
+            : sortingComparators.getOrDefault(catalogFilterDTO.getSorting(),
+                Comparator.comparing(BookEntity::getBookTitle)))
         .collect(Collectors.toList());
   }
 

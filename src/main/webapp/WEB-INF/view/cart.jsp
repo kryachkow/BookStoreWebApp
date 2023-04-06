@@ -81,13 +81,13 @@
         <c:choose>
             <c:when test="${sessionScope.user == null}">
                 <div class="align--center pt1 pb1">
-                    <p class="h4 text--dark-gray bold">Please <a href="signIn">Sign In</a> or <a
-                            href="signUp">SignUp</a> to make the order! </p>
+                    <p class="h4 text--dark-gray bold">Please <a href="guest/signIn">Sign In</a> or <a
+                            href="guest/signUp">SignUp</a> to make the order! </p>
                 </div>
             </c:when>
 
             <c:otherwise>
-                <form action="order" method="post">
+                <form action="user/order" method="post">
                     <div class="align--center">
                         <label class="h4 text--dark-gray bold" for="paymentTypeId">Choose payment type</label>
                         <select id="paymentTypeId" name="paymentTypeId" required>

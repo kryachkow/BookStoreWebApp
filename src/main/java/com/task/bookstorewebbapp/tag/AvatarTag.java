@@ -9,13 +9,13 @@ import java.io.IOException;
 
 public class AvatarTag extends TagSupport {
 
-  private static final String GUEST_NAV = "<a class=\"h3 mb1 p1 bold float--right pr4 inline-block\" href=\"signIn\">SignIn</a>\n";
+  private static final String GUEST_NAV = "<a class=\"h3 mb1 p1 bold float--right pr4 inline-block\" href=\"guest/signIn\">SignIn</a>\n";
   private static final String USER_NAV = """
       <div class="top-nav">
           <div class="float--right pr4 pt2">
               <h3 class="inline-block">%s</h1>
               <img class="inline-block" src="%s" alt="%s" style="width:50px;height:50px;">
-              <a class="h3 mb1 p1 bold float--right pr4 inline-block" href="cart">Cart</a>
+              <a class="h3 mb1 p1 bold float--right pr4 inline-block" href="../cart">Cart</a>
           </div>
       </div>""";
 

@@ -24,7 +24,7 @@ public class SessionLocaleRepositoryImpl implements LocaleRepository {
   @Override
   public Optional<Locale> getLocaleFormRequest(HttpServletRequest request) {
     String langParam = request.getParameter(Constants.LANG_PARAMETER);
-    if(langParam != null) {
+    if (langParam != null) {
 
       return Optional.of(Locale.forLanguageTag(langParam));
     }

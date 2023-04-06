@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public interface UserService {
 
+  String getRoleNameByUserId(long id);
 
   Optional<User> getUserByNickname(String nickname);
 
@@ -15,8 +16,9 @@ public interface UserService {
       String password,
       boolean mailingSubscription);
 
-  Optional<User> authenticateUser(String email, String password);
+  boolean passwordCheck(User user, String password);
 
+  boolean isBanned(User user, boolean passwordCheck);
   List<User> getUsers();
 
 }

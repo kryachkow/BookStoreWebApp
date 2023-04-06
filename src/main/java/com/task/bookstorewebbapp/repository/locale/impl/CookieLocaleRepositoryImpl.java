@@ -29,11 +29,14 @@ public class CookieLocaleRepositoryImpl implements LocaleRepository {
   public Optional<Locale> getLocaleFormRequest(HttpServletRequest request) {
     Locale locale = null;
     String langParam = request.getParameter(Constants.LANG_PARAMETER);
-    if(langParam != null) {
+    if (langParam != null) {
       return Optional.of(Locale.forLanguageTag(langParam));
     }
-    for(Cookie cookie: request.getCookies()){
-      if(cookie.getName().equals(Constants.LOCALE_ATTRIBUTE)) {
+    if (request.getCookies().length == 0) {
+      return Optional.empty();
+    }
+    for (Cookie cookie : request.getCookies()) {
+      if (cookie.getName().equals(Constants.LOCALE_ATTRIBUTE)) {
         locale = Locale.forLanguageTag(cookie.getValue());
         cookie.setMaxAge(cookieAge);
       }
@@ -42,7 +45,8 @@ public class CookieLocaleRepositoryImpl implements LocaleRepository {
   }
 
   @Override
-  public void setLocaleToRequest(HttpServletRequest request, HttpServletResponse response, Locale locale) {
+  public void setLocaleToRequest(HttpServletRequest request, HttpServletResponse response,
+      Locale locale) {
     Cookie cookie = new Cookie(Constants.LOCALE_ATTRIBUTE, locale.getLanguage());
     cookie.setMaxAge(cookieAge);
     response.addCookie(cookie);

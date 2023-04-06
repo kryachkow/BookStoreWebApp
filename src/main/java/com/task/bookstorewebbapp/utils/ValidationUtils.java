@@ -97,7 +97,7 @@ public final class ValidationUtils {
       }
     });
 
-    return getErrorString(validationDTO);
+    return checkErrorString(validationDTO);
   }
 
 
@@ -118,7 +118,7 @@ public final class ValidationUtils {
     return nickName != null && nickName.trim().matches(NICKNAME_REGEX);
   }
 
-  public static <V> boolean getErrorString(ValidationDTO<V> validationDTO) {
+  public static <V> boolean checkErrorString(ValidationDTO<V> validationDTO) {
     if (validationDTO.isErrorExists()) {
       validationDTO.getUserFormDTO().setPassword("");
       validationDTO.getUserFormDTO().setRepeatPassword("");

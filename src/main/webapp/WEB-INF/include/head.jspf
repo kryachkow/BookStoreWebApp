@@ -3,4 +3,4 @@
 
 <title>BookStore</title>
 <meta name="description" content="Your best bookstore">
-<link rel="stylesheet" href="template/carta/dist/css/production.css">
+<link rel="stylesheet" href="../template/carta/dist/css/production.css">

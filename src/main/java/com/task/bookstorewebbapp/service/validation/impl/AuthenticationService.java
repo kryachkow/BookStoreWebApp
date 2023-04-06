@@ -13,7 +13,8 @@ import java.util.function.Consumer;
 
 public class AuthenticationService implements ValidationService<User> {
 
-  private static final String WRONG_CREDENTIALS_MESSAGE = "Wrong credentials";
+  private static final String WRONG_CREDENTIALS_MESSAGE = "Wrong credentials. ";
+  private static final String BAN_MESSAGE = "Due to many failed attempts of logging in, your account was banned.";
 
   private final UserService userService = new UserServiceImpl();
   private final AvatarRepository avatarRepository = new AvatarRepositoryImpl();
@@ -27,6 +28,9 @@ public class AuthenticationService implements ValidationService<User> {
     validationChain.add(
         (this::validateCredentials)
     );
+    validationChain.add(this::setUpAvatar);
+
+
   }
 
   @Override
@@ -43,16 +47,32 @@ public class AuthenticationService implements ValidationService<User> {
 
   private boolean validateCredentials(ValidationDTO<User> validationDTO) {
     userService
-        .authenticateUser(validationDTO.getUserFormDTO().getEmail(),
-            validationDTO.getUserFormDTO().getPassword())
+        .getUserByEmail(validationDTO.getUserFormDTO().getEmail())
         .ifPresentOrElse(
             (user -> {
-              user.setAvatarSource(avatarRepository.getAvatar(user.getId()));
-              validationDTO.setReturnValue(user);
+              boolean passwordCheck = userService.passwordCheck(user,
+                  validationDTO.getUserFormDTO().getPassword());
+              if (!passwordCheck) {
+                validationDTO.getErrorMessage().append(WRONG_CREDENTIALS_MESSAGE);
+              }
+              if (userService.isBanned(user, passwordCheck)) {
+                validationDTO.getErrorMessage().append(BAN_MESSAGE);
+              }
+              if (!validationDTO.isErrorExists()) {
+                validationDTO.setReturnValue(user);
+              }
             }),
             () -> validationDTO.getErrorMessage().append(WRONG_CREDENTIALS_MESSAGE)
         );
 
-    return ValidationUtils.getErrorString(validationDTO);
+    return ValidationUtils.checkErrorString(validationDTO);
   }
+
+  private boolean setUpAvatar(ValidationDTO<User> validationDTO) {
+    validationDTO.getReturnValue()
+        .setAvatarSource(avatarRepository.getAvatar(validationDTO.getReturnValue().getId()));
+    return ValidationUtils.checkErrorString(validationDTO);
+  }
+
+
 }

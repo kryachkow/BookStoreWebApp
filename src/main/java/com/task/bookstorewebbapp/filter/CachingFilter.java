@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @WebFilter("/*")
 public class CachingFilter implements Filter {
+
   private static final String HEADER_NAME = "Cache-Control";
   private static final String HEADER_VALUE = "private, no-store, no-cache, must-revalidate";
 

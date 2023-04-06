@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
   public List<OrderPartEntity> getOrderPartsFromCart(Cart cart) {
     List<OrderPartEntity> orderParts = new ArrayList<>();
     SearchField<Long> idSearchField = new SearchField<>("books.id", -1L);
-    for(Entry<Long, Integer> entry: cart.getEntries()){
+    for (Entry<Long, Integer> entry : cart.getEntries()) {
       try {
         idSearchField.setValue(entry.getKey());
         BookEntity bookEntity = bookDAO.getEntityByField(idSearchField);
@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
     orderEntity.setOrderParts(getOrderPartsFromCart(cart));
     orderEntity.setPaymentDetails(paymentDetails);
     orderEntity.setUserId(user.getId());
-    orderEntity.setPaymentTypeEntity(new PaymentTypeEntity(paymentTypeId,""));
+    orderEntity.setPaymentTypeEntity(new PaymentTypeEntity(paymentTypeId, ""));
     return orderDAO.insertEntity(orderEntity);
   }
 

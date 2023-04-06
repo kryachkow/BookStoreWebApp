@@ -7,6 +7,7 @@
 </head>
 <body>
 <header class="align--center pt3">
+    <%@include file="/WEB-INF/include/navbar.jspf" %>
     <div class="container--lg border--bottom pb3">
         <h1 class="mb2">Sign In</h1>
     </div>
@@ -47,6 +48,16 @@
             <div style="color: red ; text-align: center;">
                 <c:out value="${requestScope.signInError}" default="" />
             </div>
+
+            <c:choose >
+                <c:when test="${param.goBackTo != null}">
+                    <input type="hidden" name="goBackTo" value="${param.goBackTo}">
+                </c:when>
+                <c:when test="${requestScope.goBackTo != null}">
+                    <input type="hidden" name="goBackTo" value="${requestScope.goBackTo}">
+                </c:when>
+
+            </c:choose>
 
             <div>
                 <button class="btn btn--secondary m1" type="submit">Sign In</button>

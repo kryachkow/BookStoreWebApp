@@ -1,7 +1,5 @@
 package com.task.bookstorewebbapp.model;
 
-import com.task.bookstorewebbapp.utils.Constants;
-import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,10 +9,6 @@ public class Cart {
   private final Map<Long, Integer> idQuantityMap = new HashMap<>();
 
   public Cart(){}
-
-  public static Map<Long, Integer> getCartFromRequest(HttpServletRequest request) {
-    return (Map<Long, Integer>) request.getSession().getAttribute(Constants.CART_ATTRIBUTE);
-  }
 
   public void addToCart(long id, int quantity){
     idQuantityMap.merge(id, quantity, Integer::sum);

@@ -41,6 +41,8 @@ public final class Constants {
   public static final String ACCEPT_ENCODING_HEADER = "Accept-Encoding";
   public static final String ENCODING = "gzip";
 
+  public static final String FOLDER_EXIT = "../";
+
 
   private Constants() {
   }

@@ -1,0 +1,18 @@
+<security>
+  <constraint>
+    <url-pattern>/protected/</url-pattern>
+    <role>admin</role>
+  </constraint>
+
+  <constraint>
+    <url-pattern>/user/</url-pattern>
+    <role>user</role>
+    <role>admin</role>
+  </constraint>
+
+  <constraint>
+    <url-pattern>/guest/</url-pattern>
+    <role>noRole</role>
+  </constraint>
+
+</security>

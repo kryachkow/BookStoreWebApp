@@ -17,14 +17,13 @@ import java.io.IOException;
 public class GzipFilter implements Filter {
 
 
-
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-    HttpServletRequest  httpRequest  = (HttpServletRequest)  request;
+    HttpServletRequest httpRequest = (HttpServletRequest) request;
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-    if ( canZip(httpRequest) ) {
+    if (canZip(httpRequest)) {
       httpResponse.addHeader(Constants.CONTENT_ENCODING_HEADER, Constants.ENCODING);
       GZipWrapper gzipResponse =
           new GZipWrapper(httpResponse);
@@ -40,6 +39,7 @@ public class GzipFilter implements Filter {
         httpRequest.getHeader(Constants.ACCEPT_ENCODING_HEADER);
 
     return acceptEncoding != null &&
-        acceptEncoding.contains(Constants.ENCODING);
+        acceptEncoding.contains(Constants.ENCODING) && !httpRequest.getRequestURI()
+        .contains("error");
   }
 }
